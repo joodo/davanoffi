@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <script type="text/javascript" src="/static/jquery.js"></script>
+    <script type="text/javascript" src="/static/schedule/js/manual.js"></script>
+    <script>
+        function onBackClicked() {
+            window.location.href = "{% url 'schedule:project' project.id %}"
+        }
+		
+		function onSubmit() {
+			if (!/^\d+$/.test($("#workHour").val()) || !/^\d+$/.test($("#workMinute").val())) {
+				alert("要好好填工作时间！")
+				return false
+			}
+			if ($("#job_content").val() == "") {
+				alert("要好好填工作内容！")
+				return false
+			}
+			
+			return true
+		}
+    </script>
+    <title>填写工时</title>
+	
+	<link rel="stylesheet" href="/static/schedule/datepicker/classic.css">
+	<link rel="stylesheet" href="/static/schedule/datepicker/classic.date.css">
+</head>
+<body>
+	<form action="{% url 'schedule:addschedule' project.id %}" method="post" onsubmit="return onSubmit()">
+	{% csrf_token %}
+		选择工作日期：<br />
+		<input id="inputDate" name="date" />
+		<script src="/static/schedule/datepicker/picker.js"></script>
+		<script src="/static/schedule/datepicker/picker.date.js"></script>
+		<script type="text/javascript">
+			$("#inputDate").attr("data-value", Date.now())
+			$("#inputDate").pickadate({
+				monthsFull: [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月' ],
+				monthsShort: [ '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二' ],
+				weekdaysFull: [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
+				weekdaysShort: [ '日', '一', '二', '三', '四', '五', '六' ],
+				today: '今天',
+				close: '关闭',
+				clear: '',
+				firstDay: 1,
+				format: 'yyyy 年 mm 月 dd 日',
+				formatSubmit: 'yyyy/mm/dd',
+				hiddenName: true,
+			})
+		</script><br />
+		<br />
+		工作了
+		<input id="workHour" name="workHour" style="width:35px" value="0" /><span>小时</span>
+		<input id="workMinute" name="workMinute" style="width:35px" value="0" /><span>分钟</span>
+		<br />
+		<label>工作内容：</label><br />
+		<textarea id="job_content" name="content"></textarea><br />
+		<br />
+		<button onclick="onBackClicked()" type="button">返回</button>
+		<input type="submit" value="提交！" />
+	</form>
+</body>
+</html>

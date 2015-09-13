@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <script type="text/javascript" src="/static/schedule/js/detail.js"></script>
+    <script>
+        function onBackClicked() {
+            window.location.href = "{% url 'schedule:project' project.id %}"
+        }
+		
+		function onRemoveClicked() {
+			window.location.href = "{% url 'schedule:removeproject' project.id %}"
+		}
+		
+		function minuteToHour(minutes) {
+			var re = ""
+			
+			if (parseInt(minutes / 60) > 0) {
+				re += parseInt(minutes / 60) + "小时"
+			}
+			
+			if (re === "" || minutes%60 != 0) {
+				re += parseInt(minutes % 60) + "分钟"
+			}
+			
+			document.write(re)
+		}
+    </script>
+    <title>工时详细</title>
+</head>
+<body>
+	<h3>{{ project.name }}</h3><br />
+	<table id="schedules" style="table-layout:fixed;" width="100%">
+		<tr>
+			<th style="border-bottom:1px solid black" width="120">日期</th>
+			<th style="border-bottom:1px solid black" width="100">时间</th>
+			<th style="border-bottom:1px solid black; word-wrap:break-word;">工作内容</th>
+			<th style="border-bottom:1px solid black" width="40">操作</th>
+		</tr>
+		{% for schedule in schedule_list %}
+		<tr>
+			<td style="border-bottom:1px solid black">{{ schedule.date|date:"Y年n月j日" }}</td>
+			<td style="border-bottom:1px solid black"><script>minuteToHour({{ schedule.minutes }})</script></td>
+			<td style="border-bottom:1px solid black">
+				<pre style="white-space: pre-wrap; word-wrap: break-word;">{{ schedule.content }}</pre>
+			</td>
+			<td style="border-bottom:1px solid black"><a href="{% url 'schedule:removeschedule' schedule.id %}">删除</a></td>
+		</tr>
+		{% endfor %}
+		<tr>
+			<td><b>总计</b></td>
+			<td><b><script>minuteToHour({{ total_minutes }})</script></b></td>
+		</tr>
+	</table>
+	<br/>
+	<button onclick="onBackClicked()">返回</button>
+	<button onclick="onRemoveClicked()">完工，删除！</button>
+</body>
+</html>

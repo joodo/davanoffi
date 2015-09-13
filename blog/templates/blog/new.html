@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/blog/css/new.css" />
+
+	<script>
+		var post_url = "{% url 'blog:post' %}"
+		var index_url = "{% url 'blog:index' %}"
+	</script>
+    <script type="text/javascript" src="/static/jquery.js"></script>
+    <script type="text/javascript" src="/static/blog/js/new.js"></script>
+
+    <title>新的</title>
+</head>
+<body onload="onLoad()" onresize="onResize()">
+	<div class="wrap">
+		<div class="content">
+			<form autocomplete="off">
+				<input type="radio" id="radio_text" name="radio_type" class="radio" checked /><label for="radio_text" onclick="onTypeChange('text')">文</label>
+				<input type="radio" id="radio_image" name="radio_type" class="radio" /><label for="radio_image" onclick="onTypeChange('image')">图</label>
+				<input type="radio" id="radio_voice" name="radio_type" class="radio" /><label for="radio_voice" onclick="onTypeChange('voice')">声</label>
+			</form>
+			<br />
+			<form id="text" action="{% url 'blog:post' %}" method="post">
+			{% csrf_token %}
+				<input type="hidden" name="type" value="TXT" />
+				<textarea id="text_content" name="content" placeholder="你的故事。"></textarea><br />
+				<input name="title" placeholder="描述和Tags" /><br />
+				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
+			</form>
+			<form id="image" action="{% url 'blog:post' %}" enctype="multipart/form-data" method="post">
+			{% csrf_token %}
+				<input type="hidden" name="type" value="IMG" />
+				<input type="file" name="content" accept="image/*" /><br />
+				<input name="title" placeholder="描述和Tags" /><br />
+				<a class="button" onclick="onSubmit('image')" href="#">好了。</a>
+			</form>
+			<form id="voice" action="{% url 'blog:post' %}" enctype="multipart/form-data" method="post">
+			{% csrf_token %}
+				<input type="hidden" name="type" value="VOI" />
+				<input type="file" name="content" accept="audio/*" /><br />
+				<input name="title" placeholder="描述和Tags" /><br />
+				<a class="button" onclick="onSubmit('voice')" href="#">好了。</a>
+			</form>
+		</div>
+	</div>
+	<div id="progress_mask">
+		<div id="progress_bar">
+			<div id="suits">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
