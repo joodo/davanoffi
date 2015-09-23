@@ -1,5 +1,5 @@
 """
-Django settings for personal project.
+Django settings for portnoy project.
 
 """
 
