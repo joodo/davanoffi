@@ -10,7 +10,7 @@ $(document).ready(function () {
     h = window.innerHeight;
 
     var img = new Image();
-    img.src = "/static/staticpages/img/owl.png";
+    img.src = "/static/website/img/owl.png";
     img.onload = function () {
         var c = document.getElementById("canvas");
         c.width = img.width;

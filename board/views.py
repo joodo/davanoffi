@@ -89,11 +89,6 @@ def new(request):
     return render(request, 'blog/new.html')
 
 
-def check(request):
-    if request.METHOD is 'POST':
-        return HttpResponse('okkk')
-
-
 def checkPassport(request):
     if 'passport' in request.COOKIES and request.COOKIES['passport'] == '123-10-121112':
         return True

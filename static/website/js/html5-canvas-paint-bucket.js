@@ -12,13 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/*jslint browser: true */
-/*global G_vmlCanvasManager, $ */
-
 var paintBucketApp = (function () {
-
 	"use strict";
-
 	var context,
 		canvasWidth,
 		canvasHeight,
@@ -41,7 +36,6 @@ var paintBucketApp = (function () {
 		},
 
 		matchStartColor = function (pixelPos, startR, startG, startB) {
-
 			var r = outlineLayerData.data[pixelPos],
 				g = outlineLayerData.data[pixelPos + 1],
 				b = outlineLayerData.data[pixelPos + 2],
@@ -77,7 +71,6 @@ var paintBucketApp = (function () {
 		},
 
 		floodFill = function (startX, startY, startR, startG, startB) {
-
 			var newPos,
 				x,
 				y,
@@ -184,16 +177,15 @@ var paintBucketApp = (function () {
 		},
 
         checkPass = function () {
-            $.post(blog_check_url, JSON.stringify(colorInfo), function(data,status) {
-                console.log(data);
+            $.post(check_url, colorInfo, function(data,status) {
+                var jump_url = url_dict[data]
+                console.log(data+jump_url);
+                if (jump_url) {
+                    $("#mask").fadeIn(3500, function () {
+                        window.location.href = jump_url
+                    });
+                }
             });
-            if (false) {
-                console.log("PASS!!!");
-				setCookie("passport", "123-10-121112", 1);
-                $("#mask").fadeIn(3500, function () {
-                    window.location.href = blog_index_url
-                });
-            }
         },
 
         convertPos = function (x, y) {
