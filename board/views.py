@@ -11,12 +11,12 @@ from django.core.cache import cache, caches
 
 from .models import Post
 from .forms import ContentImageForm
+from utils.passport import passport_required
 
-def index(request, tag = ''):
-    #判断是否通过passport
-    if not checkPassport(request):
-        return HttpResponseRedirect(reverse('staticpages:secret'))
 
+@passport_required('board')
+def index(request, *args, **kwargs):
+    tag = kwargs.get('tag')
     if tag:     #过滤tag
         decode_tag = urllib.parse.unquote(tag)
         post_list_all = Post.objects.filter(title__contains=decode_tag).order_by('-pk')
@@ -74,32 +74,22 @@ def index(request, tag = ''):
     }
     return render(request, 'blog/index.html', context)
 
-def loveletter(request):
-    #判断是否通过passport
-    if not checkPassport(request):
-        return HttpResponseRedirect(reverse('staticpages:secret'))
 
+@passport_required('board')
+def loveletter(request):
     return render(request, 'blog/loveletter.html')
 
-def new(request):
-    #判断是否通过passport
-    if not checkPassport(request):
-        return HttpResponseRedirect(reverse('staticpages:secret'))
 
+@passport_required('board')
+def new(request):
     return render(request, 'blog/new.html')
 
 
-def checkPassport(request):
-    if 'passport' in request.COOKIES and request.COOKIES['passport'] == '123-10-121112':
-        return True
-
-    return False
-
+@passport_required('board')
 def post(request):
     if request.method == 'POST':
         po = Post(title=html.escape(request.POST['title']),     #存的时候html转义了，方便显示
                   datetime=datetime.datetime.now(),
-                  post_type=request.POST['type'],
                   author='XU')
         po.save()
         #上传的啥类型的po
