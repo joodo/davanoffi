@@ -2,26 +2,55 @@
 var selectedColor;
 
 $(document).ready(function () {
+    ajaxInit();
+
     $("#mask").hide();
 
     w = window.innerWidth;
     h = window.innerHeight;
 
-    var c = document.getElementById("canvas");
-    size = w < h ? w : h;
-    c.width = size;
-    c.height = size;
-
-    var cxt = c.getContext("2d");
     var img = new Image();
     img.src = "/static/staticpages/img/owl.png";
-	//alert(img.src)
     img.onload = function () {
-        cxt.drawImage(img, 0, 0, size, size);
+        var c = document.getElementById("canvas");
+        c.width = img.width;
+        c.height = img.height;
+        c.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
 
         paintBucketApp.init(c);
     }
 });
+
+function ajaxInit() {
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+}
 
 function colorSelected(color) {
     if (selectedColor == color) {
@@ -46,8 +75,8 @@ function colorSelected(color) {
 }
 
 function fillColor(event) {
-    var mouseX = event.pageX - document.getElementById("canvas").offsetLeft,
-        mouseY = event.pageY - document.getElementById("canvas").offsetTop;
+    var mouseX = event.pageX - document.getElementById("canvas").offsetLeft
+        mouseY = event.pageY - document.getElementById("canvas").offsetTop
     paintBucketApp.paintAt(mouseX, mouseY);
 }
 

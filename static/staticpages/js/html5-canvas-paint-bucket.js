@@ -29,6 +29,7 @@ var paintBucketApp = (function () {
 		drawingAreaHeight,
 		colorLayerData,
 		outlineLayerData,
+        colorInfo={},
 
 		// Clears the canvas.
 		clearCanvas = function () {
@@ -89,6 +90,7 @@ var paintBucketApp = (function () {
 				drawingBoundBottom = drawingAreaY + drawingAreaHeight - 1,
 				pixelStack = [[startX, startY]];
 
+            var maxX = -1, maxY = -1;
 			while (pixelStack.length) {
 				newPos = pixelStack.pop();
 				x = newPos[0];
@@ -96,19 +98,24 @@ var paintBucketApp = (function () {
 
 				// Get current pixel position
 				pixelPos = (y * canvasWidth + x) * 4;
-				//alert("1");
 				// Go up as long as the color matches and are inside the canvas
 				while (y >= drawingBoundTop && matchStartColor(pixelPos, startR, startG, startB)) {
 					y -= 1;
 					pixelPos -= canvasWidth * 4;
 				}
 				y += 1;
+                if (y > maxY) {
+                    maxY = y;
+                    maxX = x;
+                } else if (y == maxY && x > maxX) {
+                    maxX = x;
+                }
+
 				pixelPos += canvasWidth * 4;
 
 				reachLeft = false;
 				reachRight = false;
 
-				
 				// Go down as long as the color matches and in inside the canvas
 				while (y <= drawingBoundBottom && matchStartColor(pixelPos, startR, startG, startB)) {
 					y += 1;
@@ -142,6 +149,8 @@ var paintBucketApp = (function () {
 					pixelPos += canvasWidth * 4;
 				}
 			}
+
+            colorInfo[maxX+","+maxY] = curColor.r+","+curColor.g+","+curColor.b;
 		},
 
 		// Start painting with paint bucket tool starting from pixel specified by startX and startY
@@ -170,26 +179,15 @@ var paintBucketApp = (function () {
 
 			context.putImageData(colorLayerData, 0, 0);
 
+            console.log(JSON.stringify(colorInfo));
 			checkPass();
 		},
 
         checkPass = function () {
-            var p1 = convertPos(609, 639),
-                p2 = convertPos(552, 684),
-                p3 = convertPos(566, 730),
-                p4 = convertPos(492, 1022),
-                p5 = convertPos(588, 940),
-                p6 = convertPos(628, 910),
-                p7 = convertPos(672, 1000);
-
-            if (colorLayerData.data[p1] === 153 && colorLayerData.data[p1+1] === 0 && colorLayerData.data[p1+2] === 0 &&
-                colorLayerData.data[p2] === 153 && colorLayerData.data[p2+1] === 76 && colorLayerData.data[p2+2] === 0 &&
-                colorLayerData.data[p3] === 153 && colorLayerData.data[p3+1] === 153 && colorLayerData.data[p3+2] === 0 &&
-                colorLayerData.data[p4] === 76 && colorLayerData.data[p4+1] === 0 && colorLayerData.data[p4+2] === 153 &&
-                colorLayerData.data[p5] === 153 && colorLayerData.data[p5+1] === 0 && colorLayerData.data[p5+2] === 76 &&
-                colorLayerData.data[p6] === 152 && colorLayerData.data[p6+1] === 0 && colorLayerData.data[p6+2] === 153 &&
-                colorLayerData.data[p7] === 153 && colorLayerData.data[p7+1] === 0 && colorLayerData.data[p7+2] === 76
-                ) {
+            $.post(blog_check_url, JSON.stringify(colorInfo), function(data,status) {
+                console.log(data);
+            });
+            if (false) {
                 console.log("PASS!!!");
 				setCookie("passport", "123-10-121112", 1);
                 $("#mask").fadeIn(3500, function () {

@@ -1,9 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = patterns('',
-    url(r'^blog/', include('blog.urls', namespace='blog')),
-    url(r'^schedule/', include('schedule.urls', namespace='schedule')),
+    url(r'^board/', include('board.urls', namespace='board')),
     url(r'^admin/', include(admin.site.urls)),
     url('', include('staticpages.urls', namespace='staticpages')),
-)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+\
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

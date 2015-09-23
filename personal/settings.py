@@ -37,8 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'staticpages',
-    'blog',
-    'schedule',
+    'board',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,10 +82,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
+STATIC_URL = 'static/'
 
 
 # Files uploads
-
-MEDIA_ROOT = 'C:/Users/joodo/Desktop/personal/media/'
+MEDIA_ROOT = 'media/'
 MEDIA_URL = '/media/'
+
+# Session age for a month
+SESSION_COOKIE_AGE = 2592000
