@@ -43,9 +43,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'personal.urls'
+ROOT_URLCONF = 'portnoy.urls'
 
-WSGI_APPLICATION = 'personal.wsgi.application'
+WSGI_APPLICATION = 'portnoy.wsgi.application'
 
 
 # Database
