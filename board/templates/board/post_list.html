@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="/static/board/css/index.css" />
+
+    <title>波特诺伊的秘密计划。</title>
+</head>
+<body>
+    <div class="header">
+        波特诺伊的秘密计划。
+    </div>
+    <div class="container"><ul>
+    {% for post in post_list %}
+        {% ifchanged post.datetime.date %}
+            <div class="date">
+            {% ifequal post.datetime.date.year now.date.year %}
+                <b>{{ post.datetime.date|date:'n月j日' }}</b>
+            {% else %}
+                <b>{{ post.datetime.date|date:'Y年n月j日' }}</b>
+            {% endifequal %}
+            </div>
+        {% endifchanged %}
+            <li>
+            <div class="text">
+                <p class="content">
+                    <img src="{{ post.image.url }}" />
+                    <br />
+                    {{ post.content|safe }}
+                </p>
+        {% ifnotequal post.title '' %}
+                <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
+        {% endifnotequal %}
+            </div>
+            </li>
+    {% endfor %}
+    </ul></div>
+{% ifnotequal page_obj.paginator.num_pages 1 %}
+    <div class="paginator">
+    {% if page_obj.has_previous %}
+        <a href=".">第一页</a>&nbsp;
+        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>&nbsp;
+    {% endif %}
+    {% for p in page_obj.paginator.page_range %}
+        {% ifequal p page_obj.number %}
+            <b>{{ p }}</b>&nbsp;
+        {% else %}
+            <a href="?page={{ p }}">{{ p }}</a>&nbsp;
+        {% endifequal %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">下一页</a>&nbsp;
+        <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>&nbsp;
+    {% endif %}
+        <p>----------------------------------------------</p>
+    </div>
+{% endifnotequal %}
+    <div class="poster">
+        <a href="{% url 'board:new' %}" id="new_post">写...</a>
+    </div>
+    <div class="footer">
+        <a href="{% url 'board:loveletter' %}">回忆</a>
+    </div>
+</body>
+</html>
