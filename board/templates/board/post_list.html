@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+{% load static %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="/static/board/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/index.css" %}" />
 
     <title>波特诺伊的秘密计划。</title>
 </head>
@@ -11,6 +12,7 @@
         波特诺伊的秘密计划。
     </div>
     <div class="container"><ul>
+    {% load keep_indent %}
     {% for post in post_list %}
         {% ifchanged post.datetime.date %}
             <div class="date">
@@ -24,10 +26,13 @@
             <li>
             <div class="text">
                 <p class="content">
+                {% if post.image %}
                     <img src="{{ post.image.url }}" />
                     <br />
-                    {{ post.content|safe }}
+                {% endif %}
+                    {{ post.content|keep_indent }}
                 </p>
+                {{ post.last_life }}
         {% ifnotequal post.title '' %}
                 <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
         {% endifnotequal %}
