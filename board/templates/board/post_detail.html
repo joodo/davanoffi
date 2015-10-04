@@ -22,9 +22,10 @@
         {% endfor %}
 			<form id="text" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-                <input type="text" name="title" />
-                <textarea name="content"></textarea>
                 <input type="hidden" name="parent" value="{{ post.id }}" />
+                <textarea name="content"></textarea>
+                <input type="file" name="image" accept="image/*" />
+                <input type="text" name="title" />
 				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
 			</form>
 		</div>

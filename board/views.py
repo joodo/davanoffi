@@ -66,7 +66,7 @@ class PostCreateView(CreateView):
 
 class PostDetailView(CreateView):
     model = Post
-    fields = ['title', 'content', 'parent']
+    fields = ['title', 'content', 'parent', 'image']
     template_name = 'board/post_detail.html'
     success_url = '.'
 
@@ -88,8 +88,3 @@ def add_tag_href(tag):
     tag = '<a href="%s">#%s#</a>' % (url, text)
 
     return tag
-
-
-@passport_required('board')
-def loveletter(request):
-    return render(request, 'board/loveletter.html')

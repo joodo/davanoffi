@@ -6,7 +6,10 @@
 <link rel="stylesheet" type="text/css" href="{% static "website/css/gate.css" %}" />
 
 	<script>
-        var url_dict = {"board": "{% url 'board:index' %}"}
+        var url_dict = {
+            "board": "{% url 'board:index' %}",
+            "loveletter": "{% url 'website:loveletter' %}",
+        }
 		var check_url = "{% url 'website:check' %}"
         var img_src = "{% static "website/img/owl.png" %}"
 	</script>
