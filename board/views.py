@@ -2,7 +2,7 @@
 
 import re
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
@@ -24,7 +24,6 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PostListView, self).get_context_data(**kwargs)
-        context['last_life'] = {}
         for post in context['post_list']:
             #将 title 中的 tag 变为超链接
             post.title = re.sub('#(?P<tag>.+?)#',
@@ -55,11 +54,6 @@ class PostInTag(PostListView):
         return Post.objects.filter(tags__in=[tag_obj])
 
 
-@passport_required('board')
-def loveletter(request):
-    return render(request, 'board/loveletter.html')
-
-
 class PostCreateView(CreateView):
     form_class = PostForm
     template_name = 'board/post_create.html'
@@ -70,6 +64,23 @@ class PostCreateView(CreateView):
         return super(PostCreateView, self).dispatch(*args, **kwargs)
 
 
+class PostDetailView(CreateView):
+    model = Post
+    fields = ['title', 'content', 'parent']
+    template_name = 'board/post_detail.html'
+    success_url = '.'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        post_id = int(self.kwargs['pk'])
+        context['post'] = get_object_or_404(Post, pk=post_id)
+        return context
+
+    @method_decorator(passport_required('board'))
+    def dispatch(self, *args, **kwargs):
+        return super(PostDetailView, self).dispatch(*args, **kwargs)
+
+
 def add_tag_href(tag):
     tag = tag.group('tag')
     text = html.escape(tag)
@@ -77,3 +88,8 @@ def add_tag_href(tag):
     tag = '<a href="%s">#%s#</a>' % (url, text)
 
     return tag
+
+
+@passport_required('board')
+def loveletter(request):
+    return render(request, 'board/loveletter.html')

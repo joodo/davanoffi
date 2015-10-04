@@ -13,7 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=140, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(upload_to='board/post_image', blank=True)
-    parent = models.ForeignKey('Post', related_name='comments', blank=True, null=True)
+    parent = models.ForeignKey('self', related_name='comments', blank=True, null=True)
     total_length = models.IntegerField(blank=True)
 
     def __unicode__(self):

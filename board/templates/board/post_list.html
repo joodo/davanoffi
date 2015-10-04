@@ -33,6 +33,7 @@
                     {{ post.content|keep_indent }}
                 </p>
                 {{ post.last_life }}
+                <a href="{% url "board:detail" post.id %}">more...</a>
         {% ifnotequal post.title '' %}
                 <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
         {% endifnotequal %}
