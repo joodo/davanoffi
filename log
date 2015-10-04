@@ -1,0 +1,21 @@
+/root/python/portnoy/local/lib/python2.7/site-packages/django_crontab/crontab.py:13: RemovedInDjango19Warning: django.utils.importlib will be removed in Django 1.9.
+  from django.utils.importlib import import_module
+
+Traceback (most recent call last):
+  File "/root/python/portnoy/portnoy/manage.py", line 10, in <module>
+    execute_from_command_line(sys.argv)
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django/core/management/__init__.py", line 338, in execute_from_command_line
+    utility.execute()
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django/core/management/__init__.py", line 330, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django/core/management/base.py", line 393, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django/core/management/base.py", line 444, in execute
+    output = self.handle(*args, **options)
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django_crontab/management/commands/crontab.py", line 31, in handle
+    Crontab().run_job(args[1])
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django_crontab/crontab.py", line 126, in run_job
+    job = self.__get_job_by_hash(job_hash)
+  File "/root/python/portnoy/local/lib/python2.7/site-packages/django_crontab/crontab.py", line 173, in __get_job_by_hash
+    'Run "python manage.py crontab add" again to resolve this issue!' % job_hash
+RuntimeError: No job with hash 994ec1af191fe8cd50296afe9cc3b9e8 found. It seems the crontab is out of sync with your settings.CRONJOBS. Run "python manage.py crontab add" again to resolve this issue!

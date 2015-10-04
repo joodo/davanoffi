@@ -3,25 +3,23 @@ Django settings for portnoy project.
 
 """
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'wlbw&o1bup))k%z3n5t!*6n!t&%vjc@_e&^mi*)77wr5ynk9ek'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,3 +83,9 @@ MEDIA_URL = '/media/'
 
 # Session age for a month
 SESSION_COOKIE_AGE = 2592000
+
+# Crontab
+CRONJOBS = (
+        ('0 * * * *', 'portnoy.tasks.remove_dead_post'),
+        ('0 0 * * *', 'portnoy.tasks.remove_dead_post', {'recently': False}),
+)

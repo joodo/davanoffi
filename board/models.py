@@ -13,7 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=140, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(upload_to='board/post_image', blank=True)
-    parent = models.ForeignKey('Post', related_name='comments', blank=True)
+    parent = models.ForeignKey('Post', related_name='comments', blank=True, null=True)
     total_length = models.IntegerField(blank=True)
 
     def __unicode__(self):
@@ -26,12 +26,15 @@ class Post(models.Model):
             self.parent.add_comment(commet_length)
 
     def last_life(self):
-        if self.total_length > 200:
+        if self.is_immortal():
             return 2000
 
         live_time = datetime.datetime.utcnow()-self.datetime.replace(tzinfo=None)
         life = 48*int(12*math.atan(self.total_length/40.0-2)+14)
         return life - live_time.total_seconds()/3600
+
+    def is_immortal(self):
+        return self.total_length > 200
 
 
 class Tag(models.Model):
@@ -58,7 +61,7 @@ def add_post_to_tag(sender, instance, **kwargs):
 def calc_total_length(sender, instance, **kwargs):
     if instance.pk is None:
         if instance.image:
-            l = 200
+            l = 201
         else:
             l = int(len(instance.content))
         instance.total_length = l
