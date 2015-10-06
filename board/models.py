@@ -13,6 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=140, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(upload_to='board/post_image', blank=True)
+    music = models.FileField(upload_to='board/post_music', blank=True)
     parent = models.ForeignKey('self', related_name='comments', blank=True, null=True)
     total_length = models.IntegerField(blank=True)
 
@@ -39,9 +40,9 @@ class Post(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=140, db_index=True)
-    music = models.FileField(upload_to='board/tag_music', null=True)
-    background_color = models.CharField(max_length=6, default='101010')
-    text_color = models.CharField(max_length=6, default='FFFFFF')
+    background_color = models.CharField(max_length=6, default='#101010')
+    content_text_color = models.CharField(max_length=6, default='#FFFFFF')
+    title_text_color = models.CharField(max_length=6, default='cray')
 
     posts = models.ManyToManyField(Post, related_name='tags')
 
