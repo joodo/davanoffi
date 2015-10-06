@@ -21,6 +21,8 @@ def get_css_opacity(last_life):
 
     last_life = 0 if last_life < 0 else last_life/10
     opacity = math.log10(last_life+1)/2.1 + 0.05
-    css = 'style="opacity:%f;" onMouseOver="postOpacityChange(this, 1.01)" onMouseLeave="postOpacityChange(this,%f)"'
-    css = css % (opacity, opacity)
+    css = 'style="opacity:%f;" \
+           onMouseOver="postMouseOver(this); opacityChange(this, 1);" \
+           onMouseLeave="postMouseLeave(this); opacityChange(this,%f);"' %\
+          (opacity, opacity)
     return css

@@ -13,20 +13,17 @@ function postMouseOver(e) {
 function postMouseLeave(e) {
     $(e).find("div.detail_link").hide();
 }
-function postOpacityChange(e, o) {
+function opacityChange(e, o) {
     $(e).stop(true);
     $(e).animate({opacity: o}, "slow");
-
-    if (o > 1.0) {
-        postMouseOver(e);
-    } else {
-        postMouseLeave(e);
-    }
 }
     </script>
     <title>波特诺伊的秘密计划。</title>
 </head>
 <body>
+    <div class="menu">
+        okokok
+    </div>
     <div class="header">
         波特诺伊的秘密计划。
     </div>
