@@ -43,7 +43,7 @@ def check(request):
 
 @passport_required('loveletter')
 def loveletter(request):
-    return render(request, 'board/loveletter.html')
+    return render(request, 'website/loveletter.html')
 
 
 def is_fit(key, lock):

@@ -4,29 +4,36 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/post_list.css" %}" />
+    <style type="text/css" media="screen">
+    {% if tag %}
+        body {
+            background-color: {{ tag.background_color }};
+        }
+        .text .content, body {
+            color: {{ tag.content_text_color }};
+        }
+        .container .tag, li {
+            color: {{ tag.title_text_color }};
+        }
+    {% else %}
+        body {
+            background-color: #101010;
+        }
+        .text .content, body {
+            color: #FFFFFF;
+        }
+        .container .tag, li {
+            color: #808080;
+        }
+    {% endif %}
+    </style>
 
-    <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" charset="utf-8">
-function postMouseOver(e) {
-    $(e).find("div.detail_link").show();
-}
-function postMouseLeave(e) {
-    $(e).find("div.detail_link").hide();
-}
-function postOpacityChange(e, o) {
-    $(e).stop(true);
-    $(e).animate({opacity: o}, "slow");
-
-    if (o > 1.0) {
-        postMouseOver(e);
-    } else {
-        postMouseLeave(e);
-    }
-}
-    </script>
     <title>波特诺伊的秘密计划。</title>
 </head>
 <body>
+{% if tag %}
+    <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
+{% endif %}
     <div class="header">
         波特诺伊的秘密计划。
     </div>
@@ -42,21 +49,21 @@ function postOpacityChange(e, o) {
             {% endifequal %}
             </div>
         {% endifchanged %}
-            <li {% get_css_opacity post.last_life %}>
-                <div class="content">
-                    <div class="detail_link">
-                {{ post.last_life }}
-                        <a href="{% url "board:detail" post.id %}">{{ post.comments.count }}</a>
-                    </div>
-                    {{ post.content|keep_indent }}
+            <li>
+            <div class="text">
+                <p class="content">
                 {% if post.image %}
-                    <br />
                     <img src="{{ post.image.url }}" />
+                    <br />
                 {% endif %}
-                </div>
-            {% ifnotequal post.title '' %}
+                    {{ post.content|keep_indent }}
+                </p>
+                {{ post.last_life }}
+                <a href="{% url "board:detail" post.id %}">more...</a>
+        {% ifnotequal post.title '' %}
                 <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
-            {% endifnotequal %}
+        {% endifnotequal %}
+            </div>
             </li>
     {% endfor %}
     </ul></div>

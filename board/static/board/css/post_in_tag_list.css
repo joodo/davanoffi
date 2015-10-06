@@ -1,8 +1,5 @@
 body {
     font-family: "黑体", "SimHei", "苹果丽中黑", "Apple LiGothic Medium";
-    color: #FFFFFF;
-    background-color: #101010;
-    letter-spacing: 1px;
 }
 
 div {
@@ -10,19 +7,9 @@ div {
     margin-right: auto;
 }
 
-li {
-    color: #808080;
-    list-style-type: none;
-}
-li:hover {
-    list-style-type: disc;
-}
-
 img {
     max-width:500px;
     vertical-align: top;
-    margin-top: 8px;
-    margin-bottom: 10px;
 }
 
 .header {
@@ -33,7 +20,6 @@ img {
     padding-bottom: 17px;
     width: 68%;
     border-bottom: dotted 1px gray;
-    letter-spacing: 4px;
 }
 
 .container, .paginator {
@@ -44,34 +30,26 @@ img {
     padding-top: 40px;
     margin-left: -7px;
     font-size: 15px;
-    margin-bottom: 10px;
 }
 
 .container .tag {
     margin-top: 0;
     margin-bottom: 28px;
     font-size: 12px;
-    color: #808080;
 }
 .container .tag a {
     color: cadetblue;
 }
 
-li {
-    margin-left: -6px;
-}
-li .content {
-    width: 750px;
-    letter-spacing: 4px;
-    line-height: 150%;
-    color: #FFFFFF;
+.content {
     font-size: 13px;
     margin-bottom: 2px;
-    margin-left: 0;
 }
-.detail_link {
-    display: none;
-    float: right;
+
+.text .content {
+    width: 80%;
+    letter-spacing: 2px;
+    line-height: 150%;
 }
 
 .paginator {

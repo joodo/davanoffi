@@ -43,7 +43,7 @@ class PostAll(PostListView):
 
 
 class PostInTag(PostListView):
-    template_name = 'board/post_list.html'
+    template_name = 'board/post_in_tag_list.html'
 
     def get_queryset(self):
         tag_name = unquote_plus(str(self.kwargs['tag']))
