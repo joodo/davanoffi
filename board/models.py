@@ -40,9 +40,9 @@ class Post(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=140, db_index=True)
-    background_color = models.CharField(max_length=6, default='#101010')
-    content_text_color = models.CharField(max_length=6, default='#FFFFFF')
-    title_text_color = models.CharField(max_length=6, default='cray')
+    background_color = models.CharField(max_length=7, default='#101010')
+    content_text_color = models.CharField(max_length=7, default='#FFFFFF')
+    title_text_color = models.CharField(max_length=7, default='#808080')
 
     posts = models.ManyToManyField(Post, related_name='tags')
 

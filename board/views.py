@@ -11,11 +11,11 @@ from django.utils.decorators import method_decorator
 from django.utils.encoding import smart_text
 from django.utils.http import urlquote_plus, unquote_plus
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from utils.passport import passport_required
 from .models import Post, Tag
-from .forms import PostForm
+from .forms import PostForm, TagForm
 
 
 class PostListView(ListView):
@@ -53,6 +53,17 @@ class PostInTag(PostListView):
             tag_obj = None
         return Post.objects.filter(tags__in=[tag_obj])
 
+    def get_context_data(self, **kwargs):
+        context = super(PostInTag, self).get_context_data(**kwargs)
+
+        tag_name = unquote_plus(str(self.kwargs['tag']))
+        try:
+            tag_obj = Tag.objects.get(name=tag_name)
+        except ObjectDoesNotExist:
+            tag_obj = None
+        context['tag'] = tag_obj
+        return context
+
 
 class PostCreateView(CreateView):
     form_class = PostForm
@@ -79,6 +90,20 @@ class PostDetailView(CreateView):
     @method_decorator(passport_required('board'))
     def dispatch(self, *args, **kwargs):
         return super(PostDetailView, self).dispatch(*args, **kwargs)
+
+
+class TagSettingView(UpdateView):
+    model = Tag
+    template_name = 'board/tag_update.html'
+    form_class = TagForm
+
+    def get_success_url(self):
+        tag = Tag.objects.get(pk = self.kwargs['pk'])
+        return reverse_lazy('board:tag', kwargs={'tag': tag.name})
+
+    @method_decorator(passport_required('board'))
+    def dispatch(self, *args, **kwargs):
+        return super(TagSettingView, self).dispatch(*args, **kwargs)
 
 
 def add_tag_href(tag):

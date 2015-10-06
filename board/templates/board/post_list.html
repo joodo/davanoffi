@@ -3,11 +3,37 @@
 {% load static %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="{% static "board/css/index.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/post_list.css" %}" />
+    <style type="text/css" media="screen">
+    {% if tag %}
+        body {
+            background-color: {{ tag.background_color }};
+        }
+        .text .content, body {
+            color: {{ tag.content_text_color }};
+        }
+        .container .tag, li {
+            color: {{ tag.title_text_color }};
+        }
+    {% else %}
+        body {
+            background-color: #101010;
+        }
+        .text .content, body {
+            color: #FFFFFF;
+        }
+        .container .tag, li {
+            color: #808080;
+        }
+    {% endif %}
+    </style>
 
     <title>波特诺伊的秘密计划。</title>
 </head>
 <body>
+{% if tag %}
+    <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
+{% endif %}
     <div class="header">
         波特诺伊的秘密计划。
     </div>
