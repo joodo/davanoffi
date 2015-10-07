@@ -28,14 +28,41 @@
     {% endif %}
     </style>
 
-    <title>波特诺伊的秘密计划。</title>
+    <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
+    <script type="text/javascript" charset="utf-8">
+        function postMouseOver(e) {
+            $(e).find("div.detail_link").show();
+        }
+        function postMouseLeave(e) {
+            $(e).find("div.detail_link").hide();
+        }
+        function opacityChange(e, o) {
+            $(e).stop(true);
+            $(e).animate({opacity: o}, "slow");
+        }
+    </script>
+    <title>
+    {% if tag.name %}
+        计划：{{ tag.name }}
+    {% else %}
+        波特诺伊的秘密计划。
+    {% endif %}
+    </title>
 </head>
 <body>
-{% if tag %}
-    <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
-{% endif %}
+    <div class="menu">
+        <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
+        <a href="#">帮助</a>
+    {% if tag.id %}
+        <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
+    {% endif %}
+    </div>
     <div class="header">
+    {% if tag.name %}
+        计划：{{ tag.name }}
+    {% else %}
         波特诺伊的秘密计划。
+    {% endif %}
     </div>
     <div class="container"><ul>
     {% load keep_indent %}
@@ -49,22 +76,29 @@
             {% endifequal %}
             </div>
         {% endifchanged %}
-            <li>
-            <div class="text">
-                <p class="content">
-                {% if post.image %}
-                    <img src="{{ post.image.url }}" />
-                    <br />
-                {% endif %}
-                    {{ post.content|keep_indent }}
-                </p>
+            <li {% get_css_opacity post.last_life %}>
+                <div class="content">
+                    <div class="detail_link">
                 {{ post.last_life }}
-                <a href="{% url "board:detail" post.id %}">more...</a>
-        {% ifnotequal post.title '' %}
+                        <a href="{% url "board:detail" post.id %}?tag={{ tag.id }}">
+                            详细
+                            {% if post.comments.count > 0 %}
+                                ({{ post.comments.count }})
+                            {% endif %}
+                        </a>
+                    </div>
+                    {{ post.content|keep_indent }}
+                {% if post.image %}
+                    <br />
+                    <img src="{{ post.image.url }}" />
+                {% endif %}
+                </div>
+            {% ifnotequal post.title '' %}
                 <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
-        {% endifnotequal %}
-            </div>
+            {% endifnotequal %}
             </li>
+    {% empty %}
+        该 Tag 下并无内容。
     {% endfor %}
     </ul></div>
 {% ifnotequal page_obj.paginator.num_pages 1 %}
@@ -84,13 +118,9 @@
         <a href="?page={{ page_obj.next_page_number }}">下一页</a>&nbsp;
         <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>&nbsp;
     {% endif %}
-        <p>----------------------------------------------</p>
     </div>
 {% endifnotequal %}
     <div class="poster">
-        <a href="{% url 'board:new' %}" id="new_post">写...</a>
-    </div>
-    <div class="footer">
     </div>
 </body>
 </html>

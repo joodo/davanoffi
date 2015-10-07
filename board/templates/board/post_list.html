@@ -22,7 +22,9 @@ function opacityChange(e, o) {
 </head>
 <body>
     <div class="menu">
-        okokok
+        <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
+        <a href="#">帮助</a>
+        <a href="#">邀请</a>
     </div>
     <div class="header">
         波特诺伊的秘密计划。
@@ -43,7 +45,12 @@ function opacityChange(e, o) {
                 <div class="content">
                     <div class="detail_link">
                 {{ post.last_life }}
-                        <a href="{% url "board:detail" post.id %}">{{ post.comments.count }}</a>
+                        <a href="{% url "board:detail" post.id %}">
+                            详细
+                            {% if post.comments.count > 0 %}
+                                ({{ post.comments.count }})
+                            {% endif %}
+                        </a>
                     </div>
                     {{ post.content|keep_indent }}
                 {% if post.image %}

@@ -40,6 +40,10 @@ img {
 .menu:hover {
     opacity: 1;
 }
+.menu a {
+    text-decoration: none;
+    margin-left: 10px;
+}
 
 .header {
     text-align: center;
@@ -83,8 +87,13 @@ li .content {
     margin-left: 0;
 }
 .detail_link {
+    font-size: 12px;
     display: none;
     float: right;
+    letter-spacing: 1px;
+}
+.detail_link a {
+    text-decoration: none;
 }
 
 .paginator {
