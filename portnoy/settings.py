@@ -5,6 +5,8 @@ Django settings for portnoy project.
 
 import os
 
+from utils import password
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -89,3 +91,10 @@ CRONJOBS = (
         ('0 * * * *', 'portnoy.tasks.remove_dead_post'),
         ('0 0 * * *', 'portnoy.tasks.remove_dead_post', {'recently': False}),
 )
+
+# Email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'wyattliang'
+EMAIL_HOST_PASSWORD = password.EMAIL_PASSWORD
+EMAIL_USE_SSL = True

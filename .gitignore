@@ -4,3 +4,4 @@
 *.swp
 db.sqlite3
 media/*
+utils/password.py

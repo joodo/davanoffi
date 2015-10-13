@@ -32,10 +32,7 @@ img {
 .menu {
     width: 100%;
     opacity: 0;
-    text-align: right;
     font-size: 12px;
-    padding-right: 20px;
-    margin-left: -20px;
 }
 .menu:hover {
     opacity: 1;
