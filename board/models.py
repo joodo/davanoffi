@@ -35,7 +35,10 @@ class Post(models.Model):
         return life - live_time.total_seconds()/3600
 
     def is_immortal(self):
-        return self.total_length > 200
+        if self.parent:
+            return True
+        else
+            return self.total_length > 200
 
 
 class Tag(models.Model):
