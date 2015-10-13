@@ -99,7 +99,7 @@ class TagSettingView(UpdateView):
 
     def get_success_url(self):
         tag = Tag.objects.get(pk = self.kwargs['pk'])
-        return reverse_lazy('board:tag', kwargs={'tag': tag.name})
+        return reverse_lazy('board:tag', kwargs={'tag': urlquote_plus(tag.name)})
 
     @method_decorator(passport_required('board'))
     def dispatch(self, *args, **kwargs):

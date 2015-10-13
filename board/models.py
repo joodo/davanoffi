@@ -39,7 +39,7 @@ class Post(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=140, db_index=True)
+    name = models.CharField(max_length=140, db_index=True, editable=False)
     background_color = models.CharField(max_length=7, default='#101010')
     content_text_color = models.CharField(max_length=7, default='#FFFFFF')
     title_text_color = models.CharField(max_length=7, default='#808080')

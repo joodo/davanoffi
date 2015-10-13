@@ -24,10 +24,9 @@
             <br />-->
 			<form id="text" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-            {{ form }}
-<!--				<input type="hidden" name="type" value="TXT" />
-				<textarea id="text_content" name="content" placeholder="你的故事。"></textarea><br />
-                <input name="title" placeholder="描述和Tags" /><br />-->
+            {% for field in form %}
+                <p>{{ field }}</p>
+            {% endfor %}
 				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
 			</form>
 		</div>

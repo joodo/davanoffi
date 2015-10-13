@@ -18,7 +18,7 @@
 		<div class="content">
 			<form id="text" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-                {{ form }}
+                {{ form.as_p }}
 				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
 			</form>
 		</div>
