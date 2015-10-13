@@ -20,10 +20,9 @@ $(document).ajaxSend(function(event, xhr, settings) {
     }
 });
 
-function onSubmit(type) {
-    //$("#text_content").val($("#text_content").val().replace(/<[^>]+>/g,""))
+function onSubmit() {
     if ($("#text_content").val() == "") {
-        alert("靠");
+        alert("fuck!!!!");
         return;
     }
 
@@ -46,11 +45,11 @@ $.ajax({
         }
         return myXhr;
     },
-    // Ajax事件
+    // Ajax脢脗录镁
     success: completeHandler,
     //beforeSend: beforeSendHandler,
     //error: errorHandler,
-    // Form数据
+    // Form脢媒戮脻
     data: formData,
     // Options to tell JQuery not to process data or worry about content-type
     cache: false,

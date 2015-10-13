@@ -37,7 +37,7 @@ class Post(models.Model):
     def is_immortal(self):
         if self.parent:
             return True
-        else
+        else:
             return self.total_length > 200
 
 

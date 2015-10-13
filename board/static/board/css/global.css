@@ -3,6 +3,7 @@ body {
     color: #FFFFFF;
     background-color: #101010;
     letter-spacing: 1px;
+    margin: 7px;
 }
 
 div {
@@ -33,13 +34,15 @@ img {
     width: 100%;
     opacity: 0;
     font-size: 12px;
+    padding-left: 15px;
+    margin-right: -15px;
 }
 .menu:hover {
     opacity: 1;
 }
 .menu a {
     text-decoration: none;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .header {

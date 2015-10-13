@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "board/css/new.css" %}" />
 
 	<script>
-		var index_url = "{% url 'board:index' %}"
+		var index_url = "{% url 'board:index' %}";
 	</script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/new.js" %}"></script>
@@ -15,6 +15,19 @@
     <title>{{ post.title }}</title>
 </head>
 <body onload="onLoad()" onresize="onResize()">
+    <div class="menu">
+        <a href="javascript:history.go(-1);">返回</a>
+    {% if post.music %}
+        <audio src="{{ post.music.url }}" autoplay loop id="background_music"></audio>
+        <script>
+            var player = document.getElementById("background_music");
+        </script>
+        音乐
+        <a href="#" onclick="player.pause();" style="margin-right:0;">停止</a>
+        <a href="#" onclick="player.play();player.volume=0.5;" style="margin-right:0;">小</a>
+        <a href="#" onclick="player.play();player.volume=1;">大</a>
+    {% endif %}
+    </div>
 	<div class="wrap">
 		<div class="content">
         {% for commet in post.comments.all %}

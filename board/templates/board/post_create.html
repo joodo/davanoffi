@@ -16,18 +16,13 @@
 <body onload="onLoad()" onresize="onResize()">
 	<div class="wrap">
 		<div class="content">
-<!--			<form autocomplete="off">
-				<input type="radio" id="radio_text" name="radio_type" class="radio" checked /><label for="radio_text" onclick="onTypeChange('text')">文</label>
-				<input type="radio" id="radio_image" name="radio_type" class="radio" /><label for="radio_image" onclick="onTypeChange('image')">图</label>
-				<input type="radio" id="radio_voice" name="radio_type" class="radio" /><label for="radio_voice" onclick="onTypeChange('voice')">声</label>
-			</form>
-            <br />-->
 			<form id="text" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-            {% for field in form %}
-                <p>{{ field }}</p>
-            {% endfor %}
-				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
+            {{ form.as_p }}
+           <!-- {% for field in form %}
+                {{ field }}<br />
+            {% endfor %}-->
+				<a class="button" onclick="onSubmit()" href="#">好了。</a>
 			</form>
 		</div>
 	</div>
