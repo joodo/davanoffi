@@ -51,13 +51,13 @@ img {
     font-weight: bold;
     padding-top: 55px;
     padding-bottom: 17px;
-    width: 68%;
+    width: 1000px;
     border-bottom: dotted 1px gray;
     letter-spacing: 4px;
 }
 
 .container, .paginator {
-    width: 65%;
+    width: 800px;
 }
 
 .container .date {
@@ -76,9 +76,11 @@ img {
 
 li {
     margin-left: -6px;
+    width: 750px;
+    word-break:break-all;
 }
 li .content {
-    width: 750px;
+    position: relative;
     letter-spacing: 4px;
     line-height: 150%;
     color: #FFFFFF;
@@ -89,8 +91,14 @@ li .content {
 .detail_link {
     font-size: 12px;
     display: none;
-    float: right;
+    position: absolute;
     letter-spacing: 1px;
+    width: 100%;
+}
+.detail_link div {
+    float: right;
+    background-color: black;
+    padding-left: 13px;
 }
 .detail_link a {
     text-decoration: none;

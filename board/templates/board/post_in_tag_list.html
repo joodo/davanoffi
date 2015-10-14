@@ -80,13 +80,14 @@
             <li {% get_css_opacity post.last_life %}>
                 <div class="content">
                     <div class="detail_link">
-                {{ post.last_life }}
-                        <a href="{% url "board:detail" post.id %}?tag={{ tag.id }}">
-                            详细
-                            {% if post.comments.count > 0 %}
-                                ({{ post.comments.count }})
-                            {% endif %}
-                        </a>
+                        <div>
+                            <a href="{% url "board:detail" post.id %}?tag={{ tag.id }}">
+                                详细
+                                {% if post.comments.count > 0 %}
+                                    ({{ post.comments.count }})
+                                {% endif %}
+                            </a>
+                        </div>
                     </div>
                     {{ post.content|keep_indent }}
                 {% if post.image %}

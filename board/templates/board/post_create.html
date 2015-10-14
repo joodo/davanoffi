@@ -18,10 +18,9 @@
 		<div class="content">
 			<form id="text" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
-            {{ form.as_p }}
-           <!-- {% for field in form %}
+            {% for field in form %}
                 {{ field }}<br />
-            {% endfor %}-->
+            {% endfor %}
 				<a class="button" onclick="onSubmit()" href="#">好了。</a>
 			</form>
 		</div>
