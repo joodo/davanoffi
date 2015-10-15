@@ -9,7 +9,7 @@ from .models import Post, Tag
 
 class PostForm(forms.ModelForm):
     content = forms.CharField(widget=forms.Textarea(attrs={'placeholder': '你的故事。'}), required=False)
-    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '描述和 Tags'}), required=False)
+    title = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '描述和 Tags'}), required=False, max_length=140)
     music = forms.FileField(widget=forms.FileInput(attrs={'accept': 'audio/mpeg'}), required=False)
     image = forms.FileField(widget=forms.FileInput(attrs={'accept': 'image/*'}), required=False)
 
@@ -22,7 +22,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['content', 'image', 'music', 'title', ]
+        fields = ['content', 'image', 'music', 'title', 'parent', ]
 
 
 class TagForm(forms.ModelForm):

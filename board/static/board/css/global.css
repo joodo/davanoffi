@@ -18,24 +18,22 @@ a {
 li {
     color: #808080;
     list-style-type: none;
+    margin-bottom: 30px;
 }
 li:hover {
     list-style-type: disc;
 }
 
 img {
-    max-width:500px;
+    max-width: 500px;
     vertical-align: top;
-    margin-top: 8px;
-    margin-bottom: 10px;
+    margin: 17px 0 23px 0;
 }
 
 .menu {
-    width: 100%;
     opacity: 0;
     font-size: 12px;
     padding-left: 15px;
-    margin-right: -15px;
 }
 .menu:hover {
     opacity: 1;
@@ -51,7 +49,7 @@ img {
     font-weight: bold;
     padding-top: 55px;
     padding-bottom: 17px;
-    width: 1000px;
+    width: 1024px;
     border-bottom: dotted 1px gray;
     letter-spacing: 4px;
 }
@@ -74,13 +72,13 @@ img {
     color: #808080;
 }
 
-li {
-    margin-left: -6px;
+.post {
+    position: relative;
     width: 750px;
     word-break:break-all;
 }
-li .content {
-    position: relative;
+
+.content {
     letter-spacing: 4px;
     line-height: 150%;
     color: #FFFFFF;
@@ -88,17 +86,24 @@ li .content {
     margin-bottom: 2px;
     margin-left: 0;
 }
+
+.title {
+    letter-spacing: 4px;
+    font-size: 18px;
+    margin: 40px 0 20px 0;
+}
+
 .detail_link {
     font-size: 12px;
     display: none;
     position: absolute;
-    letter-spacing: 1px;
+    letter-spacing: 0;
     width: 100%;
 }
 .detail_link div {
     float: right;
     background-color: black;
-    padding-left: 13px;
+    padding: 2px 7px 2px 13px;
 }
 .detail_link a {
     text-decoration: none;
@@ -120,16 +125,29 @@ li .content {
 .poster {
     text-align: center;
     margin-top: 100px;
-    margin-bottom: 100px;
 }
-.poster a {
+.button {
     color: white;
-    text-decoration: none;
+    width: 100px;
+    text-align: center;
     border: solid white 1px;
-    padding: 6px 30px;
+    padding: 8px 0;
+    font-size: 16px;
+    cursor: pointer;
 }
-.poster a:hover {
+.button:hover {
     color: black;
     background-color: white;
 }
 
+.segment {
+    color: gray;
+    border-bottom: dotted 1px gray;
+    font-size: 12px;
+    margin: 40px 0 20px -20px;
+    width: 100px;
+}
+
+.footer {
+    margin-top: 250px;
+}

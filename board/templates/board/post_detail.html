@@ -1,54 +1,92 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-{% load static %}
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
-    <link rel="stylesheet" type="text/css" href="{% static "board/css/new.css" %}" />
+﻿{% load static %}
+{% load keep_indent %}
 
-	<script>
-		var index_url = "{% url 'board:index' %}";
-	</script>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/detail.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/form.css" %}" />
+
+    <script>
+        var index_url = "{% url 'board:index' %}";
+    </script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" src="{% static "board/js/new.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/mouse.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/create.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/detail.js" %}"></script>
 
     <title>{{ post.title }}</title>
 </head>
 <body onload="onLoad()" onresize="onResize()">
     <div class="menu">
         <a href="javascript:history.go(-1);">返回</a>
-    {% if post.music %}
-        <audio src="{{ post.music.url }}" autoplay loop id="background_music"></audio>
-        <script>
-            var player = document.getElementById("background_music");
-        </script>
-        音乐
-        <a href="#" onclick="player.pause();" style="margin-right:0;">停止</a>
-        <a href="#" onclick="player.play();player.volume=0.5;" style="margin-right:0;">小</a>
-        <a href="#" onclick="player.play();player.volume=1;">大</a>
-    {% endif %}
+        {% if post.music %}
+            <audio src="{{ post.music.url }}" autoplay loop id="background_music"></audio>
+            <script>
+                var player = document.getElementById("background_music");
+            </script>
+            音乐
+            <a href="#" onclick="player.pause();" style="margin-right:0;">停止</a>
+            <a href="#" onclick="player.play();player.volume=0.5;" style="margin-right:0;">小</a>
+            <a href="#" onclick="player.play();player.volume=1;">大</a>
+        {% endif %}
     </div>
-	<div class="wrap">
-		<div class="content">
+    <div class="container">
+        <div class="title">
+            {{ post.title }}
+        </div>
+        <div class="content post">
+            {{ post.content|keep_indent }}
+            {% if post.image %}
+                <br />
+                <img src="{{ post.image.url }}" />
+            {% endif %}
+        </div>
+        <p class="segment"><b>commets</b></p>
         {% for commet in post.comments.all %}
-            {{ commet.title }}<br />
-            {{ commet.content }}<br />
+        <li class="post" onMouseOver="postMouseOver(this);" onMouseLeave="postMouseLeave(this);">
+            <div class="detail_link">
+                <div>
+                    <a href="{% url "board:detail" commet.id %}">
+                        more
+                        {% if commet.comments.count > 0 %}
+                            ({{ commet.comments.count }})
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                {{ commet.content|keep_indent }}
+                {% if post.image %}
+                    <br />
+                    <img src="{{ post.image.url }}" />
+                {% endif %}
+            </div>
+        </li>
         {% endfor %}
-			<form id="text" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-                <input type="hidden" name="parent" value="{{ post.id }}" />
-                <textarea name="content"></textarea>
-                <input type="file" name="image" accept="image/*" />
-                <input type="text" name="title" />
-				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
-			</form>
-		</div>
-	</div>
-	<div id="progress_mask">
-		<div id="progress_bar">
-			<div id="suits">
-			</div>
-		</div>
-	</div>
+        <div id="add_commet">
+            <form id="text" method="post" enctype="multipart/form-data">
+                <div id="form_fields">
+                    <p class="segment"><b>new commet</b></p>
+                    {% csrf_token %}
+                    <input type="hidden" name="parent" value="{{ post.id }}" />
+                    {{ form.content }}<br />
+                    {{ form.title }}<br />
+                    {{ form.image }}<br />
+                    {{ form.music }}<br />
+                </div>
+                <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
+            </form>
+        </div>
+    </div>
+    <div id="progress_mask">
+        <div id="progress_bar">
+            <div id="suits">
+            </div>
+        </div>
+    </div>
+    <div class="footer"></div>
 </body>
 </html>

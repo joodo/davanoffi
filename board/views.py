@@ -76,8 +76,7 @@ class PostCreateView(CreateView):
 
 
 class PostDetailView(CreateView):
-    model = Post
-    fields = ['title', 'content', 'parent', 'image']
+    form_class = PostForm
     template_name = 'board/post_detail.html'
     success_url = '.'
 

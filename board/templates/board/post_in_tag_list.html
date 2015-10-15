@@ -1,11 +1,13 @@
+{% load static %}
+{% load keep_indent %}
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-{% load static %}
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
     <style type="text/css" media="screen">
-    {% if tag %}
+        {% if tag %}
         body {
             background-color: {{ tag.background_color }};
         }
@@ -15,32 +17,11 @@
         .container .tag, li {
             color: {{ tag.title_text_color }};
         }
-    {% else %}
-        body {
-            background-color: #101010;
-        }
-        .text .content, body {
-            color: #FFFFFF;
-        }
-        .container .tag, li {
-            color: #808080;
-        }
-    {% endif %}
+        {% endif %}
     </style>
 
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" charset="utf-8">
-        function postMouseOver(e) {
-            $(e).find("div.detail_link").show();
-        }
-        function postMouseLeave(e) {
-            $(e).find("div.detail_link").hide();
-        }
-        function opacityChange(e, o) {
-            $(e).stop(true);
-            $(e).animate({opacity: o}, "slow");
-        }
-    </script>
+    <script type="text/javascript" src="{% static "board/js/mouse.js" %}"></script>
     <title>
     {% if tag.name %}
         计划：{{ tag.name }}
@@ -66,7 +47,6 @@
     {% endif %}
     </div>
     <div class="container"><ul>
-    {% load keep_indent %}
     {% for post in post_list %}
         {% ifchanged post.datetime.date %}
             <div class="date">

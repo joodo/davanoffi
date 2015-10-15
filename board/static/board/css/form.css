@@ -1,0 +1,45 @@
+form input, form textarea {
+    margin: 5px 0;
+}
+
+form textarea {
+    width: 100%;
+    height: 300px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    border: gray solid 1px;
+    padding: 13px 13px;
+}
+
+form input[type="text"] {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: gray solid 1px;
+    color: white;
+    padding: 0 21px 7px 5px;
+}
+
+#progress_mask {
+    vertical-align: middle;
+    display: table-cell;
+    background-color: rgba(20, 20, 20, 0.8);
+    z-index: 10;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: table;
+    left: 0;
+    top: 0;
+}
+#progress_bar {
+    vertical-align: middle;
+    display: table-cell;
+}
+#suits {
+    width: 55%;
+    height: 31px;
+    padding-bottom: 5px;
+    border-bottom: white dashed 1px;
+}

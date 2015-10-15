@@ -1,23 +1,14 @@
+{% load static %}
+{% load keep_indent %}
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-{% load static %}
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
 
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" charset="utf-8">
-        function postMouseOver(e) {
-            $(e).find("div.detail_link").show();
-        }
-        function postMouseLeave(e) {
-            $(e).find("div.detail_link").hide();
-        }
-        function opacityChange(e, o) {
-            $(e).stop(true);
-            $(e).animate({opacity: o}, "slow");
-        }
-    </script>
+    <script type="text/javascript" src="{% static "board/js/mouse.js" %}"></script>
     <title>波特诺伊的秘密计划。</title>
 </head>
 <body>
@@ -30,63 +21,64 @@
         波特诺伊的秘密计划。
     </div>
     <div class="container"><ul>
-    {% load keep_indent %}
     {% for post in post_list %}
         {% ifchanged post.datetime.date %}
             <div class="date">
-            {% ifequal post.datetime.date.year now.date.year %}
+                {% ifequal post.datetime.date.year now.date.year %}
                 <b>{{ post.datetime.date|date:'n月j日' }}</b>
-            {% else %}
+                {% else %}
                 <b>{{ post.datetime.date|date:'Y年n月j日' }}</b>
-            {% endifequal %}
+                {% endifequal %}
             </div>
         {% endifchanged %}
-            <li {% get_css_opacity post.last_life %}>
-                <div class="content">
-                    <div class="detail_link">
-                        <div>
-                            <a href="{% url "board:detail" post.id %}">
-                                详细
-                                {% if post.comments.count > 0 %}
-                                    ({{ post.comments.count }})
-                                {% endif %}
-                            </a>
-                        </div>
+            <li class="post" {% get_css_opacity post.last_life %}>
+                <div class="detail_link">
+                    <div>
+                        <a href="{% url "board:detail" post.id %}">
+                            more
+                            {% if post.comments.count > 0 %}
+                                ({{ post.comments.count }})
+                            {% endif %}
+                        </a>
                     </div>
-                    {{ post.content|keep_indent }}
-                {% if post.image %}
-                    <br />
-                    <img src="{{ post.image.url }}" />
-                {% endif %}
                 </div>
-            {% ifnotequal post.title '' %}
+                <div class="content">
+                    {{ post.content|keep_indent }}
+                    {% if post.image %}
+                        <br />
+                        <img src="{{ post.image.url }}" />
+                    {% endif %}
+                </div>
+                {% ifnotequal post.title '' %}
                 <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
-            {% endifnotequal %}
+                {% endifnotequal %}
             </li>
-    {% endfor %}
+        {% endfor %}
     </ul></div>
-{% ifnotequal page_obj.paginator.num_pages 1 %}
+    {% ifnotequal page_obj.paginator.num_pages 1 %}
     <div class="paginator">
-    {% if page_obj.has_previous %}
-        <a href=".">第一页</a>&nbsp;
-        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>&nbsp;
-    {% endif %}
-    {% for p in page_obj.paginator.page_range %}
-        {% ifequal p page_obj.number %}
-            <b>{{ p }}</b>&nbsp;
-        {% else %}
-            <a href="?page={{ p }}">{{ p }}</a>&nbsp;
-        {% endifequal %}
-    {% endfor %}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">下一页</a>&nbsp;
-        <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>&nbsp;
-    {% endif %}
+        {% if page_obj.has_previous %}
+            <a href=".">第一页</a>&nbsp;
+            <a href="?page={{ page_obj.previous_page_number }}">上一页</a>&nbsp;
+        {% endif %}
+        {% for p in page_obj.paginator.page_range %}
+            {% ifequal p page_obj.number %}
+                <b>{{ p }}</b>&nbsp;
+            {% else %}
+                <a href="?page={{ p }}">{{ p }}</a>&nbsp;
+            {% endifequal %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">下一页</a>&nbsp;
+            <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>&nbsp;
+        {% endif %}
         <p>----------------------------------------------</p>
     </div>
-{% endifnotequal %}
+    {% endifnotequal %}
     <div class="poster">
-        <a href="{% url 'board:new' %}" id="new_post">写...</a>
+        <div class="button"
+            onclick="location.href='{% url 'board:new' %}';"
+            id="new_post">写...</div>
     </div>
     <div class="footer">
     </div>
