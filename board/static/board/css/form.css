@@ -42,10 +42,12 @@ form input[type="text"] {
     opacity: 0;
     filter: alpha(opacity=0);
 }
-.file_upload .label {
+.file_upload div {
     width: 40px;
     line-height: 27px;
     padding: 0 5px;
+    margin: 0;
+    display: block-inline;
 }
 
 #progress_mask {

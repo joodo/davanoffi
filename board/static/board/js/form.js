@@ -7,7 +7,7 @@ function file_field_changed() {
     var field = $(this).parent();
     var name = field.children(".file_name");
 
-    if (name.text() == "") {
+    if (name.text() == "1") {
         field.animate({
             width: "300px",
             color: "white",
