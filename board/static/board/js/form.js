@@ -4,18 +4,18 @@ $(document).ready(function() {
 });
 
 function file_field_changed() {
+    var txt = this.value;
     var field = $(this).parent();
     var name = field.children(".file_name");
 
-    if (name.text() == "1") {
+    if (name.text() == "") {
         field.animate({
             width: "300px",
             color: "white",
         }, "normal", function () {
-            alert('dfs')
-            name.text(this.value);
+            name.text(txt);
         });
     } else {
-        name.text(this.value);
+        name.text(txt);
     }
 }
