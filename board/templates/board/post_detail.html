@@ -32,6 +32,17 @@
             <a href="#" onclick="player.play();player.volume=0.5;" style="margin-right:0;">小</a>
             <a href="#" onclick="player.play();player.volume=1;">大</a>
         {% endif %}
+        {% with last_life=post.last_life %}
+            {% if last_life < 1500 %}
+                它将
+                {% if last_life > 0 %}
+                    在{{ last_life|floatformat:2 }}小时后
+                {% else %}
+                    很快
+                {% endif %}
+                消失
+            {% endif %}
+        {% endwith %}
     </div>
     <div class="container">
         <div class="title">
@@ -59,9 +70,9 @@
             </div>
             <div class="content">
                 {{ commet.content|keep_indent }}
-                {% if post.image %}
+                {% if commet.image %}
                     <br />
-                    <img src="{{ post.image.url }}" />
+                    <img src="{{ commet.image.url }}" />
                 {% endif %}
             </div>
         </li>
