@@ -23,6 +23,8 @@ form input[type="text"] {
 }
 
 .file_upload {
+    line-height: 27px;
+    height: 27px;
     width: 40px;
     margin: 5px 0;
     padding: 0;
@@ -33,7 +35,7 @@ form input[type="text"] {
     font-size: 13px;
 }
 .file_upload input {
-    width: 100%;
+    width: 370px;
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -43,11 +45,29 @@ form input[type="text"] {
     filter: alpha(opacity=0);
 }
 .file_upload div {
+    position: absolute;
     width: 40px;
-    line-height: 27px;
-    padding: 0 5px;
     margin: 0;
     display: block-inline;
+}
+.file_upload .label {
+    padding: 0 5px;
+    width: 40px;
+}
+.file_upload .file_name {
+    padding: 0 5px;
+    width: 330px;
+    left: 40px;
+}
+.file_upload .clear_button {
+    cursor: pointer;
+    width: 30px;
+    left: 370px;
+    text-align: center;
+}
+.file_upload .clear_button:hover {
+    background-color: white;
+    color: black;
 }
 
 #progress_mask {
