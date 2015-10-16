@@ -13,11 +13,19 @@
         var index_url = "{% url 'board:index' %}";
     </script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
+    <script type="text/javascript" src="{% static "utils/js/color_animate.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/mouse.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/create.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/form.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/detail.js" %}"></script>
 
-    <title>{{ post.title }}</title>
+    <title>
+        {% if post.title %}
+        {{ post.title }}
+        {% else %}
+        详细
+        {% endif %}
+    </title>
 </head>
 <body onload="onLoad()" onresize="onResize()">
     <div class="menu">
@@ -85,8 +93,16 @@
                     <input type="hidden" name="parent" value="{{ post.id }}" />
                     {{ form.content }}<br />
                     {{ form.title }}<br />
-                    {{ form.image }}<br />
-                    {{ form.music }}<br />
+                    <div class="file_upload">
+                        <div class="label">图片</div>
+                        <div class="file_name"></div>
+                        {{ form.image }}
+                    </div>
+                    <div class="file_upload">
+                        <div class="label">声音</div>
+                        <div class="file_name"></div>
+                        {{ form.music }}
+                    </div>
                 </div>
                 <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
             </form>
