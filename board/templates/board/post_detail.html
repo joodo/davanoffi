@@ -56,14 +56,16 @@
         <div class="title">
             {{ post.title }}
         </div>
-        <div class="content post">
+        <div id="commets" class="content post">
             {{ post.content|keep_indent }}
             {% if post.image %}
                 <br />
                 <img src="{{ post.image.url }}" />
             {% endif %}
         </div>
-        <p class="segment"><b>commets</b></p>
+        {% if post.comments.count > 0 %}
+            <p class="segment"><b>commets</b></p>
+        {% endif %}
         {% for commet in post.comments.all %}
         <li class="post" onMouseOver="postMouseOver(this);" onMouseLeave="postMouseLeave(this);">
             <div class="detail_link">

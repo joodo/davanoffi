@@ -10,6 +10,10 @@ form textarea {
     color: white;
     border: gray solid 1px;
     padding: 13px 13px;
+    transition: border-color 1s;
+}
+form textarea:focus {
+    border-color: white;
 }
 
 form input[type="text"] {
@@ -20,6 +24,10 @@ form input[type="text"] {
     color: white;
     padding: 0 21px 7px 5px;
     font-size: 13px;
+    transition: border-color 1s;
+}
+form input[type="text"]:focus {
+    border-color: white;
 }
 
 .file_upload {
