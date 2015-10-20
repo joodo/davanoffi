@@ -24,12 +24,6 @@ li:hover {
     list-style-type: disc;
 }
 
-img {
-    max-width: 500px;
-    vertical-align: top;
-    margin: 17px 0 23px 0;
-}
-
 .menu {
     opacity: 0;
     font-size: 12px;
@@ -85,6 +79,12 @@ img {
     font-size: 13px;
     margin-bottom: 2px;
     margin-left: 0;
+}
+
+.content img {
+    max-width: 500px;
+    vertical-align: top;
+    margin: 17px 0 23px 0;
 }
 
 .title {

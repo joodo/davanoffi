@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static "board/css/create.css" %}" />
 
     <script>
-        var index_url = "{% url 'board:index' %}"
+        var success_url = "{% url 'board:index' %}";
+        var image_url = "{% static "board/img/" %}";
     </script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "utils/js/color_animate.js" %}"></script>
@@ -18,9 +19,9 @@
 
     <title>新的</title>
 </head>
-<body onload="onLoad()" onresize="onResize()">
+<body onload="onLoad()">
     <div class="container">
-            <form id="text" method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 <div id="form_fields">
                     {% csrf_token %}
                     <input type="hidden" name="parent" value="{{ post.id }}" />
@@ -39,7 +40,7 @@
                         {{ form.music }}
                     </div>
                 </div>
-                <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
+                <div class="button" onclick="onSubmit();" href="#">回应…</div>
             </form>
     </div>
     <div id="progress_mask">
