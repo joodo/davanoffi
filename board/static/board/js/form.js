@@ -13,6 +13,10 @@ function fileFieldChanged() {
         field.animate({
             width: "40px",
             color: "#808080",
+                borderTopColor: "#808080",
+                borderBottomColor: "#808080",
+                borderLeftColor: "#808080",
+                borderRightColor: "#808080",
         }, "normal", function () {
             name.text(txt);
         });
@@ -21,6 +25,10 @@ function fileFieldChanged() {
             field.animate({
                 width: "400px",
                 color: "white",
+                borderTopColor: "white",
+                borderBottomColor: "white",
+                borderLeftColor: "white",
+                borderRightColor: "white",
             }, "normal", function () {
                 name.text(txt);
             });

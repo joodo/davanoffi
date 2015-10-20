@@ -4,29 +4,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="{% static "board/css/new.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/form.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/create.css" %}" />
 
     <script>
         var index_url = "{% url 'board:index' %}"
     </script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" src="{% static "board/js/new.js" %}"></script>
+    <script type="text/javascript" src="{% static "utils/js/color_animate.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/form.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/create.js" %}"></script>
 
     <title>新的</title>
 </head>
 <body onload="onLoad()" onresize="onResize()">
-    <div class="wrap">
-        <div class="content">
+    <div class="container">
             <form id="text" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="hidden" name="parent" />
-                {{ form.content }}
-                {{ form.title }}<br />
-                {{ form.image }}<br />
-                {{ form.music }}<br />
-                <a class="button" onclick="onSubmit()" href="#">好了。</a>
+                <div id="form_fields">
+                    {% csrf_token %}
+                    <input type="hidden" name="parent" value="{{ post.id }}" />
+                    {{ form.content }}<br />
+                    {{ form.title }}<br />
+                    <div class="file_upload">
+                        <div class="label">图片</div>
+                        <div class="file_name"></div>
+                        <div class="clear_button">X</div>
+                        {{ form.image }}
+                    </div>
+                    <div class="file_upload">
+                        <div class="label">声音</div>
+                        <div class="file_name"></div>
+                        <div class="clear_button">X</div>
+                        {{ form.music }}
+                    </div>
+                </div>
+                <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
             </form>
-        </div>
     </div>
     <div id="progress_mask">
         <div id="progress_bar">

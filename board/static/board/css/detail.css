@@ -9,7 +9,7 @@
 
 #form_fields {
     display: none;
-    padding: 20px 0;
+    padding-bottom: 10px;
     width: 100%;
 }
 
@@ -19,5 +19,5 @@
 }
 
 .footer {
-    margin-top: 500px;
+    margin-top: 600px;
 }
