@@ -5,3 +5,5 @@
 db.sqlite3
 media/*
 utils/password.py
+nohup.out
+**/migrations/*
