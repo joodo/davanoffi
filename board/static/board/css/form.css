@@ -3,6 +3,7 @@ form input, form textarea {
 }
 
 form textarea {
+    resize: none;
     height: 420px;
     background-color: transparent;
     border: none;
