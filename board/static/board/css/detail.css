@@ -1,16 +1,21 @@
+.button {
+    position: absolute;
+}
+
 #commets {
     margin-bottom: 40px;
-}
-#form_segment, .button {
-    width: 100px;
-    border-bottom: solid white 1px;
-    position: absolute;
 }
 #field_toggle {
     display: none;
     left: 120px;
 }
 
+form input[type="text"] {
+    width: 572px;
+}
+form textarea {
+    width: 572px;
+}
 
 #form_fields {
     height: 500px;

@@ -19,13 +19,13 @@
 
     <title>新的</title>
 </head>
-<body onload="onLoad()">
+<body>
     <div class="container">
-            <form method="post" enctype="multipart/form-data">
-                <div id="form_fields">
-                    {% csrf_token %}
-                    <input type="hidden" name="parent" value="{{ post.id }}" />
-                    {{ form.content }}<br />
+        <form method="post" enctype="multipart/form-data">
+            <div id="form_fields">
+                {% csrf_token %}
+                {{ form.content }}<br />
+                <div id="hidden_field">
                     {{ form.title }}<br />
                     <div class="file_upload">
                         <div class="label">图片</div>
@@ -40,8 +40,12 @@
                         {{ form.music }}
                     </div>
                 </div>
-                <div class="button" onclick="onSubmit();" href="#">回应…</div>
-            </form>
+            </div>
+            <div id="button_box">
+                <div class="button" onclick="onSubmit();" href="#">好了。</div>
+                <div id="field_toggle" class="button" onclick="fieldToggle(this);" href="#">＋</div>
+            </div>
+        </form>
     </div>
     <div id="progress_mask">
         <div id="progress_bar">
