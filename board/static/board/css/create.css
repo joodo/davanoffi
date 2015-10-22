@@ -19,3 +19,11 @@ form input[type="text"] {
 form textarea {
     width: 772px;
 }
+
+#cheshire {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    z-index: -1;
+    opacity: 0;
+}
