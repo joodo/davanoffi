@@ -93,7 +93,7 @@ form input[type="text"]:focus {
     display: table-cell;
     background-color: rgba(20, 20, 20, 0.8);
     z-index: 10;
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 100%;
     display: table;
