@@ -6,8 +6,14 @@
     border-bottom: solid white 1px;
     position: absolute;
 }
+#field_toggle {
+    display: none;
+    left: 120px;
+}
+
 
 #form_fields {
+    height: 500px;
     display: none;
     padding-bottom: 10px;
     width: 100%;

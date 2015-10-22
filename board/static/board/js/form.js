@@ -45,9 +45,21 @@ function clearField() {
     input.change();
 }
 
+function fieldToggle(e) {
+    if (e.innerHTML == "＋") {
+        $("#hidden_field").slideDown();
+        $("textarea").animate({"height": "-=110px"});
+        e.innerHTML = "－";
+    } else {
+        $("#hidden_field").slideUp();
+        $("textarea").animate({"height": "+=110px"});
+        e.innerHTML = "＋";
+    }
+}
+
 function onSubmit() {
-    if ($("#id_content").val()=="" && $("#id_title").val()=="") {
-        alert("写点什么？");
+    if ($("#id_content").val()=="" && $("#id_image").val()=="") {
+        alert("写点什么？\n……或者一张画像。");
         return;
     }
 
@@ -88,7 +100,6 @@ function ajaxSubmit() {
 
 var suit_count, suit_total
 function progressBarInit() {
-    console.log("dsdsds")
     $("#progress_mask").fadeIn();
 
     var bar_width = $("#suits").width();
@@ -127,9 +138,6 @@ function progressHandlingFunction(e){
     else {
         alert("e:"+e);
     }
-}
-
-function onLoad() {
 }
 
 $(document).ajaxSend(function(event, xhr, settings) {

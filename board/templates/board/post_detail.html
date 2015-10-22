@@ -27,7 +27,7 @@
         {% endif %}
     </title>
 </head>
-<body onload="onLoad()" onresize="onResize()">
+<body>
     <div class="menu">
         <a href="javascript:history.go(-1);">返回</a>
         {% if post.music %}
@@ -94,21 +94,24 @@
                     {% csrf_token %}
                     <input type="hidden" name="parent" value="{{ post.id }}" />
                     {{ form.content }}<br />
-                    {{ form.title }}<br />
-                    <div class="file_upload">
-                        <div class="label">图片</div>
-                        <div class="file_name"></div>
-                        <div class="clear_button">X</div>
-                        {{ form.image }}
-                    </div>
-                    <div class="file_upload">
-                        <div class="label">声音</div>
-                        <div class="file_name"></div>
-                        <div class="clear_button">X</div>
-                        {{ form.music }}
+                    <div id="hidden_field">
+                        {{ form.title }}<br />
+                        <div class="file_upload">
+                            <div class="label">图片</div>
+                            <div class="file_name"></div>
+                            <div class="clear_button">X</div>
+                            {{ form.image }}
+                        </div>
+                        <div class="file_upload">
+                            <div class="label">声音</div>
+                            <div class="file_name"></div>
+                            <div class="clear_button">X</div>
+                            {{ form.music }}
+                        </div>
                     </div>
                 </div>
                 <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
+                <div id="field_toggle" class="button" onclick="fieldToggle(this);" href="#">＋</div>
             </form>
         </div>
     </div>
