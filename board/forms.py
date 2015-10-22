@@ -16,8 +16,8 @@ class PostForm(forms.ModelForm):
     def clean_image(self):
         image = self.cleaned_data.get('image', False)
         if image:
-            if image._size > 1024*1024:
-                raise ValidationError('Image file should less then 1mb.')
+            if image._size > 5*1024*1024:
+                raise ValidationError('Image file should less then 5mb.')
             return image
 
     class Meta:
