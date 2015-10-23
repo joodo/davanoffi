@@ -1,5 +1,6 @@
 ﻿{% load static %}
 {% load keep_indent %}
+{% load thumbnail %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -60,7 +61,9 @@
             {{ post.content|keep_indent }}
             {% if post.image %}
                 <br />
-                <img src="{{ post.image.url }}" />
+                {% thumbnail post.image "500" as image %}
+                <a href="{{ post.image.url }}"><img src="{{ image.url }}" /></a>
+                {% endthumbnail %}
             {% endif %}
         </div>
         {% if post.comments.count > 0 %}
@@ -82,6 +85,9 @@
                 {{ commet.content|keep_indent }}
                 {% if commet.image %}
                     <br />
+                    {% thumbnail commet.image "500" as image %}
+                    <a href="{{ commet.image.url }}"><img src="{{ image.url }}" /></a>
+                    {% endthumbnail %}
                     <img src="{{ commet.image.url }}" />
                 {% endif %}
             </div>

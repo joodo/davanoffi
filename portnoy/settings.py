@@ -13,8 +13,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'wlbw&o1bup))k%z3n5t!*6n!t&%vjc@_e&^mi*)77wr5ynk9ek'
 
 DEBUG = True
-
 TEMPLATE_DEBUG = True
+THUMBNAIL_DEBUG = True
+"""
+if "decoder JPEG not available":
+sudo apt-get install libjpeg-dev
+pip install --no-cache-dir -I pillow
+"""
 
 ALLOWED_HOSTS = []
 
@@ -28,6 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sorl.thumbnail',
     'website',
     'board',
     'utils',

@@ -5,6 +5,7 @@ import math
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
+from sorl.thumbnail import ImageField
 
 
 class Post(models.Model):
@@ -12,7 +13,7 @@ class Post(models.Model):
 
     title = models.CharField(max_length=140, blank=True)
     content = models.TextField(blank=True)
-    image = models.ImageField(upload_to='board/post_image', blank=True)
+    image = ImageField(upload_to='board/post_image', blank=True)
     music = models.FileField(upload_to='board/post_music', blank=True)
     parent = models.ForeignKey('self', related_name='comments', blank=True, null=True)
     total_length = models.IntegerField(blank=True)

@@ -1,5 +1,6 @@
 {% load static %}
 {% load keep_indent %}
+{% load thumbnail %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,7 +47,9 @@
                     {{ post.content|keep_indent }}
                     {% if post.image %}
                         <br />
-                        <img src="{{ post.image.url }}" />
+                        {% thumbnail post.image "500" as image %}
+                        <a href="{{ post.image.url }}"><img src="{{ image.url }}" /></a>
+                        {% endthumbnail %}
                     {% endif %}
                 </div>
                 {% ifnotequal post.title '' %}

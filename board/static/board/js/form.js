@@ -89,7 +89,9 @@ function ajaxSubmit() {
         },
         success: completeHandler,
         //beforeSend: beforeSendHandler,
-        //error: errorHandler,
+        error: function () {
+            alert("error!");
+        },
         data: formData,
         // Options to tell JQuery not to process data or worry about content-type
         cache: false,
