@@ -37,7 +37,6 @@ form input[type="text"]:focus {
 #hidden_field {
     width: 100%;
     height: 110px;
-    display: none;
 }
 
 .file_upload {

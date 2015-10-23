@@ -24,6 +24,10 @@ li:hover {
     list-style-type: disc;
 }
 
+.hidden {
+    display: none;
+}
+
 .menu {
     opacity: 0;
     font-size: 12px;
@@ -94,7 +98,6 @@ li:hover {
 
 .detail_link {
     font-size: 12px;
-    display: none;
     position: absolute;
     letter-spacing: 0;
     width: 100%;

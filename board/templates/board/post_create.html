@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "board/css/form.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "board/css/create.css" %}" />
@@ -22,36 +22,12 @@
 <body>
     <div class="container">
         <form method="post" enctype="multipart/form-data">
-            <div id="form_fields">
-                {% csrf_token %}
-                {{ form.content }}<br />
-                <div id="hidden_field">
-                    {{ form.title }}<br />
-                    <div class="file_upload">
-                        <div class="label">图片</div>
-                        <div class="file_name"></div>
-                        <div class="clear_button">X</div>
-                        {{ form.image }}
-                    </div>
-                    <div class="file_upload">
-                        <div class="label">声音</div>
-                        <div class="file_name"></div>
-                        <div class="clear_button">X</div>
-                        {{ form.music }}
-                    </div>
-                </div>
-            </div>
+            {% include "board/form.html" with form=form %}
             <div id="button_box">
                 <div class="button" onclick="onSubmit();" href="#">好了。</div>
                 <div id="field_toggle" class="button" onclick="fieldToggle(this);" href="#">＋</div>
             </div>
         </form>
-    </div>
-    <div id="progress_mask">
-        <div id="progress_bar">
-            <div id="suits">
-            </div>
-        </div>
     </div>
     <img id="cheshire" src="{% static "board/img/cheshire_cat.png" %}" />
 </body>

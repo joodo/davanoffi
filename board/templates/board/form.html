@@ -1,0 +1,31 @@
+{% load static %}
+
+{% csrf_token %}
+{{ form.content }}<br />
+<div id="hidden_field" class="hidden">
+    {{ form.title }}<br />
+    <div class="file_upload">
+        <div class="label">图片</div>
+        <div class="file_name"></div>
+        <div class="clear_button">X</div>
+        {{ form.image }}
+    </div>
+    <div class="file_upload">
+        <div class="label">声音</div>
+        <div class="file_name"></div>
+        <div class="clear_button">X</div>
+        {{ form.music }}
+    </div>
+</div>
+<div id="progress_mask">
+    <div id="progress_bar">
+        <div id="suits">
+        </div>
+    </div>
+</div>
+<div class="hidden">
+    <img src="{% static "board/img/suit1.png" %}" />
+    <img src="{% static "board/img/suit2.png" %}" />
+    <img src="{% static "board/img/suit3.png" %}" />
+    <img src="{% static "board/img/suit4.png" %}" />
+</div>

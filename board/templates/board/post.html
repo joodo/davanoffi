@@ -1,0 +1,25 @@
+{% load keep_indent %}
+{% load thumbnail %}
+
+<div class="detail_link hidden">
+    <div>
+        <a href="{% url "board:detail" post.id %}">
+            more
+            {% if post.comments.count > 0 %}
+                ({{ post.comments.count }})
+            {% endif %}
+        </a>
+    </div>
+</div>
+<div class="content">
+    {{ post.content|keep_indent }}
+    {% if post.image %}
+        <br />
+        {% thumbnail post.image "500" as image %}
+        <a href="{{ post.image.url }}"><img src="{{ image.url }}" /></a>
+        {% endthumbnail %}
+    {% endif %}
+</div>
+{% ifnotequal post.title '' %}
+<p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
+{% endifnotequal %}

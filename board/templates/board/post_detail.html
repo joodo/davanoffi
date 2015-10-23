@@ -54,77 +54,25 @@
         {% endwith %}
     </div>
     <div class="container">
-        <div class="title">
-            {{ post.title }}
-        </div>
-        <div id="commets" class="content post">
-            {{ post.content|keep_indent }}
-            {% if post.image %}
-                <br />
-                {% thumbnail post.image "500" as image %}
-                <a href="{{ post.image.url }}"><img src="{{ image.url }}" /></a>
-                {% endthumbnail %}
-            {% endif %}
-        </div>
+        {% include "board/post.html" with post=post %}
         {% if post.comments.count > 0 %}
             <p class="segment"><b>commets</b></p>
         {% endif %}
         {% for commet in post.comments.all %}
         <li class="post" onMouseOver="postMouseOver(this);" onMouseLeave="postMouseLeave(this);">
-            <div class="detail_link">
-                <div>
-                    <a href="{% url "board:detail" commet.id %}">
-                        more
-                        {% if commet.comments.count > 0 %}
-                            ({{ commet.comments.count }})
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-            <div class="content">
-                {{ commet.content|keep_indent }}
-                {% if commet.image %}
-                    <br />
-                    {% thumbnail commet.image "500" as image %}
-                    <a href="{{ commet.image.url }}"><img src="{{ image.url }}" /></a>
-                    {% endthumbnail %}
-                    <img src="{{ commet.image.url }}" />
-                {% endif %}
-            </div>
+            {% include "board/post.html" with post=commet %}
         </li>
         {% endfor %}
         <div id="add_commet">
             <form id="text" method="post" enctype="multipart/form-data">
-                <div id="form_fields">
+                <input type="hidden" name="parent" value="{{ post.id }}" />
+                <div id="form_fields" class="hidden">
                     <p class="segment"><b>new commet</b></p>
-                    {% csrf_token %}
-                    <input type="hidden" name="parent" value="{{ post.id }}" />
-                    {{ form.content }}<br />
-                    <div id="hidden_field">
-                        {{ form.title }}<br />
-                        <div class="file_upload">
-                            <div class="label">图片</div>
-                            <div class="file_name"></div>
-                            <div class="clear_button">X</div>
-                            {{ form.image }}
-                        </div>
-                        <div class="file_upload">
-                            <div class="label">声音</div>
-                            <div class="file_name"></div>
-                            <div class="clear_button">X</div>
-                            {{ form.music }}
-                        </div>
-                    </div>
+                    {% include "board/form.html" with form=form %}
                 </div>
                 <div class="button" onclick="buttonClicked(this);" href="#">回应…</div>
-                <div id="field_toggle" class="button" onclick="fieldToggle(this);" href="#">＋</div>
+                <div id="field_toggle" class="button hidden" onclick="fieldToggle(this);" href="#">＋</div>
             </form>
-        </div>
-    </div>
-    <div id="progress_mask">
-        <div id="progress_bar">
-            <div id="suits">
-            </div>
         </div>
     </div>
     <div class="footer"></div>

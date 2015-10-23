@@ -1,6 +1,5 @@
 {% load static %}
 {% load keep_indent %}
-{% load thumbnail %}
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -33,28 +32,7 @@
             </div>
         {% endifchanged %}
             <li class="post" {% get_css_opacity post.last_life %}>
-                <div class="detail_link">
-                    <div>
-                        <a href="{% url "board:detail" post.id %}">
-                            more
-                            {% if post.comments.count > 0 %}
-                                ({{ post.comments.count }})
-                            {% endif %}
-                        </a>
-                    </div>
-                </div>
-                <div class="content">
-                    {{ post.content|keep_indent }}
-                    {% if post.image %}
-                        <br />
-                        {% thumbnail post.image "500" as image %}
-                        <a href="{{ post.image.url }}"><img src="{{ image.url }}" /></a>
-                        {% endthumbnail %}
-                    {% endif %}
-                </div>
-                {% ifnotequal post.title '' %}
-                <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
-                {% endifnotequal %}
+            {% include "board/post.html" with post=post %}
             </li>
         {% endfor %}
     </ul></div>
