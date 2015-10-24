@@ -8,14 +8,19 @@
     <link rel="stylesheet" type="text/css" href="{% static "board/css/form.css" %}" />
     <link rel="stylesheet" type="text/css" href="{% static "board/css/create.css" %}" />
 
-    <script>
-        var success_url = "{% url 'board:index' %}";
-        var image_url = "{% static "board/img/" %}";
-    </script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "utils/js/color_animate.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/form.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/create.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/load_color.js" %}"></script>
+    <script type="text/javascript" charset="utf-8">
+        var success_url = "{% url 'board:index' %}";
+        var image_url = "{% static "board/img/" %}";
+
+        $(document).ready(function() {
+            loadColor();
+        });
+    </script>
 
     <title>新的</title>
 </head>

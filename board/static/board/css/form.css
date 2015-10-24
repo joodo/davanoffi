@@ -6,32 +6,25 @@ form textarea {
     resize: none;
     height: 420px;
     background-color: transparent;
-    border: none;
-    color: white;
-    border: gray solid 1px;
+    border-style: solid;
+    border-width: 1px;
     padding: 13px 13px;
     transition: border-color 1s;
     font-size: 13px;
     letter-spacing: 4px;
     line-height: 150%;
 }
-form textarea:focus {
-    border-color: white;
-}
 
 form input[type="text"] {
     background-color: transparent;
     border: none;
-    border-bottom: gray solid 1px;
-    color: white;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
     padding: 0 21px 5px 5px;
     margin-bottom: 10px;
     font-size: 13px;
     letter-spacing: 4px;
     transition: border-color 1s;
-}
-form input[type="text"]:focus {
-    border-color: white;
 }
 
 #hidden_field {
@@ -47,8 +40,8 @@ form input[type="text"]:focus {
     padding: 0;
     position: relative;
     overflow: hidden;
-    color: gray;
-    border: gray solid 1px;
+    border-style: solid;
+    border-width: 1px;
     font-size: 13px;
 }
 .file_upload input {
@@ -81,10 +74,6 @@ form input[type="text"]:focus {
     width: 30px;
     left: 370px;
     text-align: center;
-}
-.file_upload .clear_button:hover {
-    background-color: white;
-    color: black;
 }
 
 #progress_mask {
