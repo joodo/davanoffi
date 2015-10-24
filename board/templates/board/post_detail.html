@@ -59,7 +59,7 @@
             <p class="segment"><b>commets</b></p>
         {% endif %}
         {% for commet in post.comments.all %}
-        <li class="post" onMouseOver="postMouseOver(this);" onMouseLeave="postMouseLeave(this);">
+        <li class="post">
             {% include "board/post.html" with post=commet %}
         </li>
         {% endfor %}
