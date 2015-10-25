@@ -21,7 +21,14 @@
         var image_url = "{% static "board/img/" %}";
 
         $(document).ready(function() {
-            loadColor();
+            {% if tag %}
+                loadColor("{{ tag.background_color }}",
+                    "{{ tag.content_text_color }}",
+                    "{{ tag.title_text_color }}",
+                    "{{ tag.anchor_text_color }}");
+            {% else %}
+                loadColor();
+            {% endif %}
         });
     </script>
 

@@ -84,6 +84,8 @@ class PostDetailView(CreateView):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         post_id = int(self.kwargs['pk'])
         context['post'] = get_object_or_404(Post, pk=post_id)
+        tag_id = self.request.GET['tag'] if 'tag' in self.request.GET else None
+        context['tag'] = get_object_or_404(Tag, pk=tag_id) if tag_id else None
         return context
 
     @method_decorator(passport_required('board'))

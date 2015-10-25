@@ -46,7 +46,7 @@
             </div>
         {% endifchanged %}
         <li class="post" {% get_css_opacity post.last_life %}>
-            {% include "board/post.html" with post=post %}
+            {% include "board/post.html" with post=post tag_id=tag.id %}
         </li>
     {% endfor %}
     </ul></div>
