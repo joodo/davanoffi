@@ -29,7 +29,8 @@ class TagForm(forms.ModelForm):
     background_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
     content_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
     title_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
+    anchor_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
 
     class Meta:
         model = Tag
-        fields = ['background_color', 'content_text_color', 'title_text_color',]
+        fields = ['background_color', 'content_text_color', 'title_text_color', 'anchor_text_color',]

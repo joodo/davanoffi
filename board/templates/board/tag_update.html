@@ -2,31 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 {% load static %}
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" type="text/css" href="{% static "board/css/new.css" %}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
 
-	<script>
-		var index_url = "{% url 'board:index' %}"
-	</script>
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
-    <script type="text/javascript" src="{% static "board/js/new.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/tag_update.js" %}"></script>
 
     <title>{{ tag.name }}</title>
 </head>
-<body onload="onLoad()" onresize="onResize()">
+<body>
 	<div class="wrap">
 		<div class="content">
-			<form id="text" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-                {{ form.as_p }}
-				<a class="button" onclick="onSubmit('text')" href="#">好了。</a>
+			<form method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <br />
+				<div class="button">记住。</div>
 			</form>
-		</div>
-	</div>
-	<div id="progress_mask">
-		<div id="progress_bar">
-			<div id="suits">
-			</div>
 		</div>
 	</div>
 </body>

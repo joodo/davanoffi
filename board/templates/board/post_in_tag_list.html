@@ -4,30 +4,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
-    <style type="text/css" media="screen">
-        {% if tag %}
-        body {
-            background-color: {{ tag.background_color }};
-        }
-        .text .content, body {
-            color: {{ tag.content_text_color }};
-        }
-        .container .tag, li {
-            color: {{ tag.title_text_color }};
-        }
-        {% endif %}
-    </style>
 
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/mouse.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/load_color.js" %}"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            loadColor("{{ tag.background_color }}",
+                "{{ tag.content_text_color }}",
+                "{{ tag.title_text_color }}",
+                "{{ tag.anchor_text_color }}");
+        });
+    </script>
     <title>
-    {% if tag.name %}
         计划：{{ tag.name }}
-    {% else %}
-        波特诺伊的秘密计划。
-    {% endif %}
     </title>
 </head>
 <body>
@@ -35,16 +27,12 @@
         <a href="{% url 'board:index' %}">主页</a>
         <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
         <a href="#">帮助</a>
-    {% if tag.id %}
-        <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
-    {% endif %}
+        {% if tag.id %}
+            <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
+        {% endif %}
     </div>
     <div class="header">
-    {% if tag.name %}
         计划：{{ tag.name }}
-    {% else %}
-        波特诺伊的秘密计划。
-    {% endif %}
     </div>
     <div class="container"><ul>
     {% for post in post_list %}
@@ -57,52 +45,11 @@
             {% endifequal %}
             </div>
         {% endifchanged %}
-            <li {% get_css_opacity post.last_life %}>
-                <div class="content">
-                    <div class="detail_link">
-                        <div>
-                            <a href="{% url "board:detail" post.id %}?tag={{ tag.id }}">
-                                详细
-                                {% if post.comments.count > 0 %}
-                                    ({{ post.comments.count }})
-                                {% endif %}
-                            </a>
-                        </div>
-                    </div>
-                    {{ post.content|keep_indent }}
-                {% if post.image %}
-                    <br />
-                    <img src="{{ post.image.url }}" />
-                {% endif %}
-                </div>
-            {% ifnotequal post.title '' %}
-                <p class="tag"><i>{{ post.datetime|time:'G:i' }}，</i>{{ post.title|safe }}</p>
-            {% endifnotequal %}
-            </li>
-    {% empty %}
-        该 Tag 下并无内容。
+        <li class="post" {% get_css_opacity post.last_life %}>
+            {% include "board/post.html" with post=post %}
+        </li>
     {% endfor %}
     </ul></div>
-{% ifnotequal page_obj.paginator.num_pages 1 %}
-    <div class="paginator">
-    {% if page_obj.has_previous %}
-        <a href=".">第一页</a>&nbsp;
-        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>&nbsp;
-    {% endif %}
-    {% for p in page_obj.paginator.page_range %}
-        {% ifequal p page_obj.number %}
-            <b>{{ p }}</b>&nbsp;
-        {% else %}
-            <a href="?page={{ p }}">{{ p }}</a>&nbsp;
-        {% endifequal %}
-    {% endfor %}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">下一页</a>&nbsp;
-        <a href="?page={{ page_obj.paginator.num_pages }}">最后一页</a>&nbsp;
-    {% endif %}
-    </div>
-{% endifnotequal %}
-    <div class="poster">
-    </div>
+    {% include "board/paginator.html" with page_obj=page_obj %}
 </body>
 </html>

@@ -37,10 +37,10 @@
                 {% endifequal %}
             </div>
         {% endifchanged %}
-            <li class="post" {% get_css_opacity post.last_life %}>
-            {% include "board/post.html" with post=post %}
-            </li>
-        {% endfor %}
+        <li class="post" {% get_css_opacity post.last_life %}>
+        {% include "board/post.html" with post=post %}
+        </li>
+    {% endfor %}
     </ul></div>
     {% include "board/paginator.html" with page_obj=page_obj %}
     <div class="poster">

@@ -97,6 +97,7 @@ class TagSettingView(UpdateView):
     form_class = TagForm
 
     def get_success_url(self):
+        print('dddd')
         tag = Tag.objects.get(pk = self.kwargs['pk'])
         return reverse_lazy('board:tag', kwargs={'tag': urlquote_plus(tag.name)})
 
