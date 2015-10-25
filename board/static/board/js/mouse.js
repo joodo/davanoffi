@@ -1,9 +1,14 @@
-function postMouseOver(e) {
-    $(e).find("div.detail_link").show();
+$(document).ready(function () {
+    $("li.post").mouseover(postMouseOver);
+    $("li.post").mouseleave(postMouseLeave);
+});
+
+function postMouseOver() {
+    $(this).find("div.detail_link").show();
 }
 
-function postMouseLeave(e) {
-    $(e).find("div.detail_link").hide();
+function postMouseLeave() {
+    $(this).find("div.detail_link").hide();
 }
 
 function opacityChange(e, o) {
