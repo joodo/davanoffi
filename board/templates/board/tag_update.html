@@ -4,22 +4,30 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" type="text/css" href="{% static "board/css/global.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "board/css/tag_update.css" %}" />
 
     <script type="text/javascript" src="{% static "utils/js/jquery.js" %}"></script>
     <script type="text/javascript" src="{% static "board/js/tag_update.js" %}"></script>
+    <script type="text/javascript" src="{% static "board/js/load_color.js" %}"></script>
 
     <title>{{ tag.name }}</title>
 </head>
 <body>
-	<div class="wrap">
-		<div class="content">
-			<form method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <br />
-				<div class="button">记住。</div>
-			</form>
-		</div>
+	<div id="palette">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <div id="save">记住</div>
+            <div id="cancle">取消</div>
+        </form>
 	</div>
+    <div class="container">
+        <li class="post">
+            <div class="content">
+                内容内容内容内容
+            </div>
+            <p class="tag"><i>01:45，</i><a href="#">#portnoy#</a> title</p>
+        </li>
+    </div>
 </body>
 </html>

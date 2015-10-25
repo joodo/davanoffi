@@ -26,10 +26,14 @@ class PostForm(forms.ModelForm):
 
 
 class TagForm(forms.ModelForm):
-    background_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
-    content_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
-    title_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
-    anchor_text_color = forms.CharField(widget=forms.TextInput(attrs={'type': 'color'}))
+    background_color = forms.CharField(label='背景',
+            widget=forms.TextInput(attrs={'type': 'color'}))
+    content_text_color = forms.CharField(label='主要文字',
+            widget=forms.TextInput(attrs={'type': 'color'}))
+    title_text_color = forms.CharField(label='次要文字',
+            widget=forms.TextInput(attrs={'type': 'color'}))
+    anchor_text_color = forms.CharField(label='链接',
+            widget=forms.TextInput(attrs={'type': 'color'}))
 
     class Meta:
         model = Tag
