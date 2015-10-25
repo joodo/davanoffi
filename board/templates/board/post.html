@@ -3,7 +3,7 @@
 
 <div class="detail_link hidden">
     <div>
-        <a href="{% url "board:detail" post.id %}{% if tag_id %}?tag={{ tag_id }}{% endif %}">
+        <a href="{% url "board:detail" post.id %}{% if tag_id %}{{ tag_id }}/{% endif %}">
             more
             {% if post.comments.count > 0 %}
                 ({{ post.comments.count }})
