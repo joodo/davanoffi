@@ -53,9 +53,10 @@
             <a href="#" onclick="player.play();player.volume=0.5;" style="margin-right:0;">小</a>
             <a href="#" onclick="player.play();player.volume=1;">大</a>
         {% endif %}
+        写于 {{ post.datetime|date:'Y年n月j日 G:i' }}
         {% with last_life=post.last_life %}
             {% if last_life < 1500 %}
-                它将
+                ，它将
                 {% if last_life > 0 %}
                     在{{ last_life|floatformat:2 }}小时后
                 {% else %}
