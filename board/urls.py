@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^(?P<pk>[0-9]+)/$', views.PostDetailView.as_view(), name='detail'),
     url(r'^(?P<pk>[0-9]+)/(?P<tag>.+?)/$', views.PostDetailView.as_view(), name='detail_with_tag'),
     url(r'^new/$', views.PostCreateView.as_view(), name='new'),
+    url(r'^help/$', views.helpView, name='help'),
 )

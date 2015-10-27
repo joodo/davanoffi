@@ -26,7 +26,7 @@
     <div class="menu">
         <a href="{% url 'board:index' %}">主页</a>
         <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
-        <a href="#">帮助</a>
+        <a href="{% url 'board:help' %}">帮助</a>
         {% if tag.id %}
             <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
         {% endif %}

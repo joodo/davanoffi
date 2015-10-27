@@ -12,7 +12,7 @@ function loadColor(background, content, title, anchor) {
     $(".button").css("border-color", content);
 
     $("li, .tag, .paginator a, .file_upload").css("color", title);
-    $(".segment, textarea, input, .file_upload").css("border-color", title);
+    $(".segment, textarea, input, .file_upload, .header").css("border-color", title);
 
     $(".paginator a").hover(function() {
         $(this).css("color", content);

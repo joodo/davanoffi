@@ -2,7 +2,7 @@
 
 import re
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
@@ -106,6 +106,10 @@ class TagSettingView(UpdateView):
     @method_decorator(passport_required('board'))
     def dispatch(self, *args, **kwargs):
         return super(TagSettingView, self).dispatch(*args, **kwargs)
+
+
+def helpView(request):
+    return render_to_response('board/help.html')
 
 
 def add_tag_href(tag):

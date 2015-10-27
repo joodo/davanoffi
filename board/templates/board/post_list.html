@@ -19,8 +19,9 @@
 </head>
 <body>
     <div class="menu">
+        <a href="{% url 'website:gate' %}">退出</a>
         <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
-        <a href="#">帮助</a>
+        <a href="{% url 'board:help' %}">帮助</a>
     </div>
     <div class="header">
         波特诺伊的秘密计划。

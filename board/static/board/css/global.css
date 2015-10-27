@@ -2,6 +2,13 @@ body {
     font-family: "黑体", "SimHei", "苹果丽中黑", "Apple LiGothic Medium";
     letter-spacing: 1px;
     margin: 7px;
+    background-color: #101010;
+    color: white;
+    font-size: 13px;
+}
+
+a {
+    color: cadetblue;
 }
 
 div {
