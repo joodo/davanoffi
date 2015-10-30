@@ -8,6 +8,7 @@ $(document).ready(function() {
     });
 
 	$("#catalog a").click(titleClicked);
+	$("#catalog a:first").click();
 });
 
 function titleClicked() {
