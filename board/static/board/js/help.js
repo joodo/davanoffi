@@ -1,9 +1,24 @@
 $(document).ready(function() {
-    $("h3").each(function() {
-        $("#catalog").append("<a href='#" +
-            this.id +
-            "'>"+
-            this.innerHTML +
+    $("div.content").each(function() {
+        $("#catalog").append("<a href='#' div_id='"+
+			this.id+
+			"'>"+
+            $(this).attr("title") +
             "</a><br/>");
     });
+
+	$("#catalog a").click(titleClicked);
 });
+
+function titleClicked() {
+	if ($(this).hasClass("actived")) {
+		return;
+	}
+
+	$(".content").hide();
+	$("#catalog a").removeClass("actived");
+
+	div_id = $(this).attr("div_id");
+	$("#"+div_id).show();
+	$(this).addClass("actived");
+}
