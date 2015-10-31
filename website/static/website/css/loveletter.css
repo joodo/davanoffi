@@ -25,6 +25,9 @@
     letter-spacing: 2px;
     line-height: 130%;
 	padding-bottom: 300px;
+    letter-spacing: 4px;
+    line-height: 150%;
+    font-size: 13px;
 }
 
 #content p.right {

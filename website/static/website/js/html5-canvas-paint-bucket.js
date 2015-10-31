@@ -179,7 +179,6 @@ var paintBucketApp = (function () {
         checkPass = function () {
             $.post(check_url, colorInfo, function(data,status) {
                 var jump_url = url_dict[data]
-                console.log(data+jump_url);
                 if (jump_url) {
                     $("#mask").fadeIn(3500, function () {
                         window.location.href = jump_url
