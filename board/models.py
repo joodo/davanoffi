@@ -4,7 +4,7 @@ import math
 
 from django.db import models
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_save, pre_delete
 from sorl.thumbnail import ImageField
 
 
@@ -73,3 +73,9 @@ def calc_total_length(sender, instance, **kwargs):
         instance.total_length = l
         if instance.parent_id is not None:
             instance.parent.add_comment(l)
+
+
+@reveiver(pre_delete, sender=Post)
+def delete_file(sender, instance, **kwargs):
+    instance.image.delete(False)
+    instance.music.delete(False)
