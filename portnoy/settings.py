@@ -26,6 +26,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    #python manage.py crontab add
+    #python manage.py crontab show
+    #python manage.py crontab remove
     'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
