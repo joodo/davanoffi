@@ -16,14 +16,6 @@ div {
     margin-right: auto;
 }
 
-li {
-    list-style-type: none;
-    margin-bottom: 30px;
-}
-li:hover {
-    list-style-type: disc;
-}
-
 .hidden {
     display: none;
 }
@@ -70,9 +62,14 @@ li:hover {
 }
 
 .post {
+    list-style-type: none;
+    margin-bottom: 30px;
     position: relative;
     width: 750px;
     word-break:break-all;
+}
+.post:hover {
+    list-style-type: disc;
 }
 
 .content {

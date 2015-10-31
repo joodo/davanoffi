@@ -57,11 +57,7 @@ class PostInTag(PostListView):
         context = super(PostInTag, self).get_context_data(**kwargs)
 
         tag_name = unquote_plus(str(self.kwargs['tag']))
-        try:
-            tag_obj = Tag.objects.get(name=tag_name)
-        except ObjectDoesNotExist:
-            tag_obj = None
-        context['tag'] = tag_obj
+        context['tag'] = get_object_or_404(Tag, name=tag_name)
         return context
 
 

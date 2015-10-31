@@ -9,13 +9,17 @@ body {
 }
 
 h3 {
-    margin: 40px 0 25px 0;
+    margin: 40px 0 20px 0;
 }
 
 p {
     text-indent: 34px;
     line-height: 150%;
     padding-left: 10px;
+}
+
+a {
+    text-decoration: none;
 }
 
 .content {

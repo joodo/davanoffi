@@ -27,9 +27,7 @@
         <a href="{% url 'board:index' %}">主页</a>
         <a href="mailto:wyattliang@gmail.com?subject=feedback">联系管理员</a>
         <a href="{% url 'board:help' %}">帮助</a>
-        {% if tag.id %}
-            <a href="{% url 'board:tag_setting' tag.id %}">设置</a>
-        {% endif %}
+        <a href="{% url 'board:tag_setting' tag.id %}">更改配色</a>
     </div>
     <div class="header">
         计划：{{ tag.name }}

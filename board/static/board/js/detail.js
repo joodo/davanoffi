@@ -7,3 +7,7 @@ function buttonClicked(e) {
         onSubmit();
     }
 }
+
+$(document).ready(function() {
+    $("textarea").attr("placeholder", "你的回应。");
+})

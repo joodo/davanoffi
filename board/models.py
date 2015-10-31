@@ -32,7 +32,7 @@ class Post(models.Model):
             return 2000
 
         live_time = datetime.datetime.utcnow()-self.datetime.replace(tzinfo=None)
-        life = 48*int(12*math.atan(self.total_length/40.0-2)+14)
+        life = 48*int(12*math.atan(len(self.content)/40.0-2)+14)
         return life - live_time.total_seconds()/3600
 
     def is_immortal(self):
