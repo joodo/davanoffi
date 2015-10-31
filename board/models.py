@@ -75,7 +75,7 @@ def calc_total_length(sender, instance, **kwargs):
             instance.parent.add_comment(l)
 
 
-@reveiver(pre_delete, sender=Post)
+@receiver(pre_delete, sender=Post)
 def delete_file(sender, instance, **kwargs):
     instance.image.delete(False)
     instance.music.delete(False)
