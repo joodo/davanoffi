@@ -31,10 +31,11 @@ class PostListView(ListView):
                     post.title)
 
         return context
-
+"""
     @method_decorator(passport_required('board'))
     def dispatch(self, *args, **kwargs):
         return super(PostListView, self).dispatch(*args, **kwargs)
+"""
 
 
 class PostAll(PostListView):
@@ -66,10 +67,6 @@ class PostCreateView(CreateView):
     template_name = 'board/post_create.html'
     success_url = reverse_lazy('board:index')
 
-    @method_decorator(passport_required('board'))
-    def dispatch(self, *args, **kwargs):
-        return super(PostCreateView, self).dispatch(*args, **kwargs)
-
 
 class PostDetailView(CreateView):
     form_class = PostForm
@@ -84,10 +81,6 @@ class PostDetailView(CreateView):
         context['tag'] = get_object_or_404(Tag, pk=tag_id) if tag_id else None
         return context
 
-    @method_decorator(passport_required('board'))
-    def dispatch(self, *args, **kwargs):
-        return super(PostDetailView, self).dispatch(*args, **kwargs)
-
 
 class TagSettingView(UpdateView):
     model = Tag
@@ -98,10 +91,6 @@ class TagSettingView(UpdateView):
         print('dddd')
         tag = Tag.objects.get(pk = self.kwargs['pk'])
         return reverse_lazy('board:tag', kwargs={'tag': urlquote_plus(tag.name)})
-
-    @method_decorator(passport_required('board'))
-    def dispatch(self, *args, **kwargs):
-        return super(TagSettingView, self).dispatch(*args, **kwargs)
 
 
 def helpView(request):
