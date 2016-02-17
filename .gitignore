@@ -7,3 +7,4 @@ media/*
 utils/password.py
 nohup.out
 **/migrations/*
+portnoy/settings.py
