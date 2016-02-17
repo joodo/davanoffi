@@ -1,0 +1,34 @@
+﻿body {
+    background-color:black;
+}
+
+#photo {
+    position: absolute;
+}
+
+a {
+    position: absolute;
+    text-decoration: none;
+    color: #00ff00;
+    display: block;
+}
+a:hover {
+    color: green;
+}
+a:active {
+    color: #ff0000;
+}
+#smile {
+    font-size: 35px;
+}
+#love {
+    font-size: 65px;
+}
+#secret {
+    font-size: 12px;
+}
+#music {
+    font-size: 20px;
+}
+
+

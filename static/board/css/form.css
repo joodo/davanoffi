@@ -1,0 +1,100 @@
+form input, form textarea {
+    margin: 5px 0;
+}
+
+form textarea {
+    resize: none;
+    height: 420px;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 1px;
+    padding: 13px 13px;
+    transition: border-color 1s;
+    font-size: 13px;
+    letter-spacing: 4px;
+    line-height: 150%;
+}
+
+form input[type="text"] {
+    background-color: transparent;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding: 0 21px 5px 5px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    letter-spacing: 4px;
+    transition: border-color 1s;
+}
+
+#hidden_field {
+    width: 100%;
+    height: 110px;
+}
+
+.file_upload {
+    line-height: 27px;
+    height: 27px;
+    width: 40px;
+    margin: 0 0 10px 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 13px;
+}
+.file_upload input {
+    width: 370px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.file_upload div {
+    position: absolute;
+    width: 40px;
+    margin: 0;
+    display: block-inline;
+}
+.file_upload .label {
+    padding: 0 5px;
+    width: 40px;
+}
+.file_upload .file_name {
+    padding: 0 5px;
+    width: 330px;
+    left: 40px;
+}
+.file_upload .clear_button {
+    cursor: pointer;
+    width: 30px;
+    left: 370px;
+    text-align: center;
+}
+
+#progress_mask {
+    vertical-align: middle;
+    display: table-cell;
+    background-color: rgba(20, 20, 20, 0.8);
+    z-index: 10;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    display: table;
+    left: 0;
+    top: 0;
+}
+#progress_bar {
+    vertical-align: middle;
+    display: table-cell;
+}
+#suits {
+    width: 55%;
+    height: 31px;
+    padding-bottom: 5px;
+    border-bottom: white dashed 1px;
+}

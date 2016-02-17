@@ -1,0 +1,143 @@
+body {
+    font-family: "黑体", "SimHei", "苹果丽中黑", "Apple LiGothic Medium";
+    letter-spacing: 1px;
+    margin: 7px;
+    background-color: #101010;
+    color: white;
+    font-size: 13px;
+}
+
+a {
+    color: cadetblue;
+}
+
+div {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.menu {
+    opacity: 0;
+    font-size: 12px;
+    padding-left: 15px;
+}
+.menu:hover {
+    opacity: 1;
+}
+.menu a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.header {
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    padding-top: 55px;
+    padding-bottom: 17px;
+    width: 1024px;
+    border-bottom: dotted 1px gray;
+    letter-spacing: 4px;
+}
+
+.container, .paginator {
+    width: 800px;
+}
+
+.container .date {
+    padding-top: 40px;
+    margin-left: -7px;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.container .tag {
+    margin-top: 0;
+    margin-bottom: 28px;
+    font-size: 12px;
+}
+
+.post {
+    list-style-type: none;
+    margin-bottom: 30px;
+    position: relative;
+    width: 750px;
+    word-break:break-all;
+}
+.post:hover {
+    list-style-type: disc;
+}
+
+.content {
+    letter-spacing: 4px;
+    line-height: 150%;
+    font-size: 13px;
+    margin-bottom: 2px;
+    margin-left: 0;
+}
+
+.content img {
+    vertical-align: top;
+    margin: 17px 0 23px 0;
+}
+
+.title {
+    letter-spacing: 4px;
+    font-size: 18px;
+    margin: 40px 0 20px 0;
+}
+
+.detail_link {
+    font-size: 12px;
+    position: absolute;
+    letter-spacing: 0;
+    width: 100%;
+}
+.detail_link div {
+    float: right;
+    padding: 2px 7px 2px 13px;
+}
+.detail_link a {
+    text-decoration: none;
+}
+
+.paginator {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: center;
+}
+.paginator a {
+    text-decoration:none;
+}
+
+.poster {
+    text-align: center;
+    margin-top: 100px;
+}
+.button {
+    width: 80px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.segment {
+    color: gray;
+    border-width: 0;
+    border-style: dotted;
+    border-bottom-width: 1px;
+    font-size: 12px;
+    margin: 0 0 20px -20px;
+    width: 100px;
+}
+
+.footer {
+    margin-top: 250px;
+}

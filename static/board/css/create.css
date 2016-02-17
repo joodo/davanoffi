@@ -1,0 +1,29 @@
+.container {
+    margin-top: 20px;
+}
+
+#button_box {
+    position: relative;
+    margin-top: 10px;
+}
+
+#field_toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+form input[type="text"] {
+    width: 772px;
+}
+form textarea {
+    width: 772px;
+}
+
+#cheshire {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    z-index: -1;
+    opacity: 0;
+}

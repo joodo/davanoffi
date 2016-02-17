@@ -1,0 +1,32 @@
+.button {
+    position: absolute;
+}
+
+#commets {
+    margin-bottom: 40px;
+}
+#field_toggle {
+    left: 120px;
+}
+
+form input[type="text"] {
+    width: 572px;
+}
+form textarea {
+    width: 572px;
+}
+
+#form_fields {
+    height: 500px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+#add_commet {
+    position: absolute;
+    width: 600px;
+}
+
+.footer {
+    margin-top: 600px;
+}
